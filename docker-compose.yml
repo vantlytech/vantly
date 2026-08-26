@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:8000/api/v1
+      - NEXT_PUBLIC_SITE_URL=http://localhost:3000
+      - ADMIN_API_KEY=${ADMIN_API_KEY:-dev-admin-key-change-in-production}
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    command: npm run dev
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ../Dockerfile.backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite+aiosqlite:///./vantly.db
+      - APP_ENV=development
+      - DEBUG=true
+      - ADMIN_API_KEY=${ADMIN_API_KEY:-dev-admin-key-change-in-production}
+      - CORS_ORIGINS=["http://localhost:3000","http://127.0.0.1:3000"]
+      - FRONTEND_URL=http://localhost:3000
+    volumes:
+      - ./backend:/app
+      - ./backend/vantly.db:/app/vantly.db
+    command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+
+  # Optional: PostgreSQL for production-like development
+  # postgres:
+  #   image: postgres:16-alpine
+  #   environment:
+  #     - POSTGRES_USER=vantly
+  #     - POSTGRES_PASSWORD=vantly
+  #     - POSTGRES_DB=vantly
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+
+# volumes:
+#   postgres_data:
