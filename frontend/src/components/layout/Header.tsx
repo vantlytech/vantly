@@ -15,11 +15,11 @@ const navigation = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:border-gray-800 dark:bg-gray-950/95">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 glass">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8" aria-label="Main navigation">
         <div className="flex items-center">
           <Link href="/" className="flex items-center space-x-2" aria-label="Vantly Home">
-            <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">Vantly</span>
+            <span className="text-2xl font-bold text-blue-400">Vantly</span>
           </Link>
         </div>
 
@@ -29,8 +29,9 @@ export function Header() {
               key={item.name}
               href={item.href}
               className={cn(
-                'text-sm font-medium transition-colors',
-                'text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400'
+                'text-sm font-medium transition-colors relative',
+                'text-gray-300 hover:text-white dark:hover:text-blue-300',
+                'after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-blue-400 after:transition-all hover:after:w-full'
               )}
             >
               {item.name}
@@ -40,17 +41,17 @@ export function Header() {
 
         <div className="hidden md:flex md:items-center md:space-x-4">
           <Link href="/contact">
-            <Button variant="ghost" size="sm">Get in Touch</Button>
+            <Button variant="glass" size="sm">Get in Touch</Button>
           </Link>
           <Link href="/contact">
-            <Button size="sm">Start a Project</Button>
+            <Button variant="glass-primary" size="sm">Start a Project</Button>
           </Link>
         </div>
 
         <div className="md:hidden">
           <button
             type="button"
-            className="inline-flex items-center justify-center p-2 text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+            className="inline-flex items-center justify-center p-2 glass rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
             aria-label="Open menu"
           >
             <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

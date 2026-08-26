@@ -1,6 +1,5 @@
 'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui';
 import { cn } from '@/lib/utils';
 
 interface Service {
@@ -68,49 +67,45 @@ interface ServicesSectionProps {
 
 export function ServicesSection({ className }: ServicesSectionProps) {
   return (
-    <section className={cn('py-20 lg:py-32 bg-white dark:bg-gray-950', className)} aria-labelledby="services-heading">
+    <section className={cn('py-20 lg:py-32 bg-black', className)} aria-labelledby="services-heading">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 id="services-heading" className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+          <h2 id="services-heading" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Our Core Services
           </h2>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+          <p className="mt-4 text-lg text-gray-400">
             Three specialized services designed to work together for maximum digital impact.
           </p>
         </div>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {services.map((service) => (
-            <Card key={service.name} className="h-full hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-xl bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
-                  {service.icon}
-                </div>
-                <CardTitle className="text-xl">{service.name}</CardTitle>
-                <CardDescription>{service.description}</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <ul className="space-y-2" role="list">
-                  {service.benefits.map((benefit) => (
-                    <li key={benefit} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400">
-                      <svg className="h-5 w-5 flex-shrink-0 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      {benefit}
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={service.href}
-                  className="mt-4 inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
-                >
-                  Learn more
-                  <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </a>
-              </CardContent>
-            </Card>
+            <article key={service.name} className="glass rounded-2xl p-8 h-full hover:shadow-2xl hover:border-white/20 hover:-translate-y-1 transition-all duration-300">
+              <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-xl glass-strong">
+                {service.icon}
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-2">{service.name}</h3>
+              <p className="text-gray-400 mb-6">{service.description}</p>
+              <ul className="space-y-3 mb-6" role="list">
+                {service.benefits.map((benefit) => (
+                  <li key={benefit} className="flex items-start gap-3 text-sm text-gray-300">
+                    <svg className="h-5 w-5 flex-shrink-0 text-blue-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    {benefit}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href={service.href}
+                className="inline-flex items-center text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                Learn more
+                <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </a>
+            </article>
           ))}
         </div>
       </div>

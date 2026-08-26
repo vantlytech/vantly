@@ -3,10 +3,20 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { Hero } from '@/components/sections';
+import { cn } from '@/lib/utils';
 
 const BLOG_DIR = path.join(process.cwd(), 'src/content/blog');
 
-function getBlogPosts() {
+interface BlogPost {
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+  tags: string[];
+  author: string;
+}
+
+function getBlogPosts(): BlogPost[] {
   const files = fs.readdirSync(BLOG_DIR);
   const posts = files
     .filter((file) => file.endsWith('.mdx'))
@@ -15,7 +25,7 @@ function getBlogPosts() {
       const content = fs.readFileSync(filePath, 'utf-8');
       const { data } = matter(content);
       const slug = file.replace('.mdx', '');
-      return { slug, ...data };
+      return { slug, ...data } as BlogPost;
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   return posts;
@@ -37,32 +47,32 @@ export default function BlogPage() {
         className="py-16 lg:py-24"
       />
 
-      <section className="py-20 lg:py-32 bg-white dark:bg-gray-950" aria-labelledby="posts-heading">
+      <section className="py-20 lg:py-32 bg-black" aria-labelledby="posts-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             {posts.map((post) => (
               <article
                 key={post.slug}
-                className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-lg transition-shadow"
+                className={cn('glass rounded-2xl overflow-hidden hover:shadow-2xl hover:border-white/20 hover:-translate-y-1 transition-all duration-300')}
               >
                 <div className="p-6">
                   <div className="flex flex-wrap gap-2 mb-4">
                     {post.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 rounded-full"
+                        className="px-3 py-1 text-xs font-medium glass text-blue-400 rounded-full border border-blue-500/30"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 line-clamp-2">
-                    <a href={`/blog/${post.slug}`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  <h2 className="text-xl font-semibold text-white mb-2 line-clamp-2">
+                    <a href={`/blog/${post.slug}`} className="hover:text-blue-400 transition-colors">
                       {post.title}
                     </a>
                   </h2>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3">{post.description}</p>
-                  <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+                  <p className="text-gray-400 text-sm mb-4 line-clamp-3">{post.description}</p>
+                  <div className="flex items-center justify-between text-sm text-gray-500">
                     <span>{post.author}</span>
                     <time dateTime={post.date}>{new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
                   </div>
@@ -73,7 +83,7 @@ export default function BlogPage() {
 
           {posts.length === 0 && (
             <div className="text-center py-16">
-              <p className="text-gray-600 dark:text-gray-400">No posts yet. Check back soon!</p>
+              <p className="text-gray-500">No posts yet. Check back soon!</p>
             </div>
           )}
         </div>

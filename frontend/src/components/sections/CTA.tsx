@@ -20,22 +20,23 @@ export function CTA({
   className,
 }: CTAProps) {
   return (
-    <section className={cn('py-20 lg:py-32 bg-blue-600 dark:bg-blue-700', className)} aria-labelledby="cta-heading">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+    <section className={cn('py-20 lg:py-32 bg-black relative overflow-hidden', className)} aria-labelledby="cta-heading">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10" />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <h2 id="cta-heading" className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
           {title}
         </h2>
-        <p className="mt-4 text-lg text-blue-100 max-w-2xl mx-auto">
+        <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
           {description}
         </p>
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link href={primaryCTA.href}>
-            <Button size="lg" variant="secondary" className="w-full sm:w-auto">
+            <Button variant="glass-primary" size="lg" className="w-full sm:w-auto">
               {primaryCTA.label}
             </Button>
           </Link>
           <Link href={secondaryCTA.href}>
-            <Button size="lg" variant="outline" className="w-full sm:w-auto border-white text-white hover:bg-white/10">
+            <Button variant="glass" size="lg" className="w-full sm:w-auto">
               {secondaryCTA.label}
             </Button>
           </Link>

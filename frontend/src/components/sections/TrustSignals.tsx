@@ -46,16 +46,16 @@ interface TrustSignalsProps {
 
 export function TrustSignals({ className }: TrustSignalsProps) {
   return (
-    <section className={cn('py-20 lg:py-32 bg-gray-50 dark:bg-gray-900', className)} aria-labelledby="trust-heading">
+    <section className={cn('py-20 lg:py-32 bg-black', className)} aria-labelledby="trust-heading">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 id="trust-heading" className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+          <h2 id="trust-heading" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Trusted by Growing Companies
           </h2>
         </div>
 
         <div className="mb-16">
-          <div className="flex flex-wrap items-center justify-center gap-12 text-gray-400 dark:text-gray-500 opacity-60" role="list" aria-label="Client logos">
+          <div className="flex flex-wrap items-center justify-center gap-12 text-gray-500 opacity-50" role="list" aria-label="Client logos">
             {logos.map((logo) => (
               <div key={logo} className="text-lg font-semibold" role="listitem">
                 {logo}
@@ -68,7 +68,7 @@ export function TrustSignals({ className }: TrustSignalsProps) {
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.author}
-              className="p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700"
+              className="p-6 glass rounded-2xl hover:shadow-2xl hover:border-white/20 hover:-translate-y-1 transition-all duration-300"
             >
               <div className="flex gap-1 mb-4" aria-label="5 star rating">
                 {[1, 2, 3, 4, 5].map((star) => (
@@ -77,10 +77,10 @@ export function TrustSignals({ className }: TrustSignalsProps) {
                   </svg>
                 ))}
               </div>
-              <p className="text-gray-600 dark:text-gray-300 mb-6">"{testimonial.content}"</p>
+              <p className="text-gray-300 mb-6">"{testimonial.content}"</p>
               <div>
-                <p className="font-medium text-gray-900 dark:text-white">{testimonial.author}</p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">{testimonial.role}, {testimonial.company}</p>
+                <p className="font-medium text-white">{testimonial.author}</p>
+                <p className="text-sm text-gray-500">{testimonial.role}, {testimonial.company}</p>
               </div>
             </div>
           ))}

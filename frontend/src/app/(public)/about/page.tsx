@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { Hero } from '@/components/sections';
 import { CTA } from '@/components/sections';
+import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -38,32 +39,32 @@ export default function AboutPage() {
         secondaryCTA={{ label: 'View Our Work', href: '/case-studies' }}
       />
 
-      <section className="py-20 lg:py-32 bg-white dark:bg-gray-950" aria-labelledby="mission-heading">
+      <section className="py-20 lg:py-32 bg-black" aria-labelledby="mission-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center mb-16">
-            <h2 id="mission-heading" className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            <h2 id="mission-heading" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Our Mission
             </h2>
-            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+            <p className="mt-4 text-lg text-gray-400">
               To help ambitious companies get found, get chosen, and grow faster through the intersection of AI search, traditional SEO, and exceptional web experiences.
             </p>
           </div>
 
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 max-w-4xl mx-auto">
             {values.map((value) => (
-              <div key={value.title} className="p-6 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800 text-left">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{value.title}</h3>
-                <p className="mt-2 text-gray-600 dark:text-gray-400">{value.description}</p>
+              <div key={value.title} className="p-6 glass rounded-xl hover:shadow-xl hover:border-white/20 transition-all duration-300 text-left">
+                <h3 className="text-xl font-semibold text-white">{value.title}</h3>
+                <p className="mt-2 text-gray-400">{value.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20 lg:py-32 bg-gray-50 dark:bg-gray-900" aria-labelledby="team-heading">
+      <section className="py-20 lg:py-32 bg-black" aria-labelledby="team-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 id="team-heading" className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            <h2 id="team-heading" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Meet the Team
             </h2>
           </div>
@@ -71,33 +72,33 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {team.map((member) => (
               <div key={member.name} className="text-center">
-                <div className="mx-auto w-32 h-32 rounded-full bg-gray-200 dark:bg-gray-700 mb-4 flex items-center justify-center text-gray-400 dark:text-gray-500">
+                <div className="mx-auto w-32 h-32 rounded-full glass-strong mb-4 flex items-center justify-center text-white text-3xl font-bold">
                   {member.name.charAt(0)}
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{member.name}</h3>
-                <p className="text-sm text-blue-600 dark:text-blue-400">{member.role}</p>
-                <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">{member.bio}</p>
+                <h3 className="text-lg font-semibold text-white">{member.name}</h3>
+                <p className="text-sm text-blue-400">{member.role}</p>
+                <p className="mt-2 text-sm text-gray-400">{member.bio}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20 lg:py-32 bg-white dark:bg-gray-950" aria-labelledby="journey-heading">
+      <section className="py-20 lg:py-32 bg-black" aria-labelledby="journey-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 id="journey-heading" className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            <h2 id="journey-heading" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Our Journey
             </h2>
           </div>
 
           <div className="mx-auto max-w-2xl">
             {milestones.map((milestone) => (
-              <div key={milestone.year} className="relative pl-8 pb-12 border-l-2 border-gray-200 dark:border-gray-700 last:border-0 last:pb-0">
-                <div className="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-600 border-4 border-white dark:border-gray-950 -ml-2" />
-                <div className="text-sm font-medium text-blue-600 dark:text-blue-400">{milestone.year}</div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mt-1">{milestone.title}</h3>
-                <p className="mt-1 text-gray-600 dark:text-gray-400">{milestone.description}</p>
+              <div key={milestone.year} className="relative pl-8 pb-12 border-l-2 border-gray-700 last:border-0 last:pb-0">
+                <div className="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-500 border-4 border-black -ml-2" />
+                <div className="text-sm font-medium text-blue-400">{milestone.year}</div>
+                <h3 className="text-lg font-semibold text-white mt-1">{milestone.title}</h3>
+                <p className="mt-1 text-gray-400">{milestone.description}</p>
               </div>
             ))}
           </div>

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { Hero } from '@/components/sections';
 import { CTA } from '@/components/sections';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui';
+import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'Case Studies',
@@ -90,12 +90,12 @@ const caseStudies = [
 ];
 
 const colorClasses = {
-  blue: 'bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400',
-  green: 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400',
-  emerald: 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400',
-  purple: 'bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400',
-  orange: 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400',
-  indigo: 'bg-indigo-100 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-400',
+  blue: 'glass-strong bg-blue-500/20 text-blue-400 border border-blue-500/30',
+  green: 'glass-strong bg-green-500/20 text-green-400 border border-green-500/30',
+  emerald: 'glass-strong bg-emerald-500/20 text-emerald-400 border border-emerald-500/30',
+  purple: 'glass-strong bg-purple-500/20 text-purple-400 border border-purple-500/30',
+  orange: 'glass-strong bg-orange-500/20 text-orange-400 border border-orange-500/30',
+  indigo: 'glass-strong bg-indigo-500/20 text-indigo-400 border border-indigo-500/30',
 };
 
 export default function CaseStudiesPage() {
@@ -107,45 +107,44 @@ export default function CaseStudiesPage() {
         className="py-16 lg:py-24"
       />
 
-      <section className="py-20 lg:py-32 bg-white dark:bg-gray-950" aria-labelledby="case-studies-heading">
+      <section className="py-20 lg:py-32 bg-black" aria-labelledby="case-studies-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-3">
             {caseStudies.map((study) => (
-              <Card key={study.title} className="h-full hover:shadow-xl transition-shadow">
-                <CardHeader>
-                  <div className="flex items-start justify-between gap-4">
-                    <div className={cn('w-12 h-12 rounded-xl flex items-center justify-center text-2xl font-bold', colorClasses[study.color as keyof typeof colorClasses])}>
-                      {study.logo}
+              <article
+                key={study.title}
+                className="glass rounded-2xl p-6 h-full hover:shadow-2xl hover:border-white/20 hover:-translate-y-1 transition-all duration-300"
+              >
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <div className={cn('w-12 h-12 rounded-xl flex items-center justify-center text-2xl font-bold', colorClasses[study.color as keyof typeof colorClasses])}>
+                    {study.logo}
+                  </div>
+                  <span className="text-sm font-medium text-gray-400">{study.tagline}</span>
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2">{study.title}</h3>
+                <p className="text-gray-400 mb-4">{study.description}</p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {study.services.map((service) => (
+                    <span key={service} className="px-2 py-0.5 text-xs font-medium glass text-gray-300 rounded">
+                      {service}
+                    </span>
+                  ))}
+                </div>
+                <div className="grid grid-cols-3 gap-4 mb-6">
+                  {study.results.map((result) => (
+                    <div key={result.label} className="text-center p-4 glass-subtle rounded-xl">
+                      <div className="text-2xl font-bold text-white">{result.metric}</div>
+                      <div className="text-xs text-gray-500">{result.label}</div>
                     </div>
-                    <span className="text-sm font-medium text-gray-500 dark:text-gray-400">{study.tagline}</span>
-                  </div>
-                  <CardTitle className="text-xl">{study.title}</CardTitle>
-                  <CardDescription>{study.description}</CardDescription>
-                  <div className="flex flex-wrap gap-2">
-                    {study.services.map((service) => (
-                      <span key={service} className="px-2 py-0.5 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded">
-                        {service}
-                      </span>
-                    ))}
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <div className="grid grid-cols-3 gap-4 mb-6">
-                    {study.results.map((result) => (
-                      <div key={result.label} className="text-center p-4 bg-gray-50 dark:bg-gray-900 rounded-xl">
-                        <div className="text-2xl font-bold text-gray-900 dark:text-white">{result.metric}</div>
-                        <div className="text-xs text-gray-500 dark:text-gray-400">{result.label}</div>
-                      </div>
-                    ))}
-                  </div>
-                  <a href="/contact" className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
-                    View Details
-                    <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </a>
-                </CardContent>
-              </Card>
+                  ))}
+                </div>
+                <a href="/contact" className="inline-flex items-center text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors">
+                  View Details
+                  <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </a>
+              </article>
             ))}
           </div>
         </div>

@@ -29,14 +29,14 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950" role="contentinfo">
+    <footer className="border-t border-white/10 bg-black/80 glass" role="contentinfo">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8">
             <Link href="/" className="flex items-center space-x-2" aria-label="Vantly Home">
-              <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">Vantly</span>
+              <span className="text-2xl font-bold text-blue-400">Vantly</span>
             </Link>
-            <p className="text-base text-gray-600 dark:text-gray-400 max-w-xs">
+            <p className="text-base text-gray-400 max-w-xs">
               We help businesses grow through Generative Engine Optimization, Search Engine Optimization, and custom website development.
             </p>
             <div className="flex space-x-6">
@@ -44,7 +44,7 @@ export function Footer() {
                 <a
                   key={social.name}
                   href={social.href}
-                  className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                  className="text-gray-400 hover:text-blue-400 transition-colors"
                   aria-label={social.name}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -68,11 +68,11 @@ export function Footer() {
           <div className="mt-12 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Services</h3>
+                <h3 className="text-sm font-semibold text-white">Services</h3>
                 <ul className="mt-4 space-y-3" role="list">
                   {footerLinks.services.map((link) => (
                     <li key={link.name}>
-                      <Link href={link.href} className="text-sm text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors">
+                      <Link href={link.href} className="text-sm text-gray-400 hover:text-blue-400 transition-colors">
                         {link.name}
                       </Link>
                     </li>
@@ -80,11 +80,11 @@ export function Footer() {
                 </ul>
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Company</h3>
+                <h3 className="text-sm font-semibold text-white">Company</h3>
                 <ul className="mt-4 space-y-3" role="list">
                   {footerLinks.company.map((link) => (
                     <li key={link.name}>
-                      <Link href={link.href} className="text-sm text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors">
+                      <Link href={link.href} className="text-sm text-gray-400 hover:text-blue-400 transition-colors">
                         {link.name}
                       </Link>
                     </li>
@@ -94,11 +94,11 @@ export function Footer() {
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Resources</h3>
+                <h3 className="text-sm font-semibold text-white">Resources</h3>
                 <ul className="mt-4 space-y-3" role="list">
                   {footerLinks.resources.map((link) => (
                     <li key={link.name}>
-                      <Link href={link.href} className="text-sm text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors">
+                      <Link href={link.href} className="text-sm text-gray-400 hover:text-blue-400 transition-colors">
                         {link.name}
                       </Link>
                     </li>
@@ -106,15 +106,15 @@ export function Footer() {
                 </ul>
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Connect</h3>
+                <h3 className="text-sm font-semibold text-white">Connect</h3>
                 <ul className="mt-4 space-y-3" role="list">
                   <li>
-                    <a href="mailto:hello@vantly.com" className="text-sm text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors">
+                    <a href="mailto:hello@vantly.com" className="text-sm text-gray-400 hover:text-blue-400 transition-colors">
                       hello@vantly.com
                     </a>
                   </li>
                   <li>
-                    <a href="tel:+1234567890" className="text-sm text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors">
+                    <a href="tel:+1234567890" className="text-sm text-gray-400 hover:text-blue-400 transition-colors">
                       +1 (234) 567-890
                     </a>
                   </li>
@@ -124,8 +124,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-gray-200 pt-8 dark:border-gray-800">
-          <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
+        <div className="mt-12 border-t border-white/10 pt-8">
+          <p className="text-sm text-gray-500 text-center">
             &copy; {new Date().getFullYear()} Vantly. All rights reserved.
           </p>
         </div>

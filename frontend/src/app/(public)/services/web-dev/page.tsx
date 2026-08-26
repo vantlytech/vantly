@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { Hero } from '@/components/sections';
 import { CTA } from '@/components/sections';
+import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'Website Development',
@@ -43,17 +44,17 @@ export default function WebDevPage() {
         secondaryCTA={{ label: 'View Pricing', href: '/pricing' }}
       />
 
-      <section className="py-20 lg:py-32 bg-white dark:bg-gray-950" aria-labelledby="benefits-heading">
+      <section className="py-20 lg:py-32 bg-black" aria-labelledby="benefits-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 id="benefits-heading" className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            <h2 id="benefits-heading" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
               What We Build With
             </h2>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
             {techStack.map((tech) => (
-              <span key={tech} className="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium border border-gray-200 dark:border-gray-700">
+              <span key={tech} className="px-4 py-2 glass text-purple-400 rounded-full text-sm font-medium border border-purple-500/30">
                 {tech}
               </span>
             ))}
@@ -61,12 +62,12 @@ export default function WebDevPage() {
 
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             {devBenefits.map((benefit, index) => (
-              <div key={benefit} className="p-6 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-800">
+              <div key={benefit} className={cn('p-6 glass rounded-xl hover:shadow-xl hover:border-white/20 transition-all duration-300')}>
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400 flex items-center justify-center">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg glass-strong bg-purple-500/20 text-purple-400 flex items-center justify-center">
                     <span className="font-bold text-lg">{index + 1}</span>
                   </div>
-                  <p className="text-gray-700 dark:text-gray-300 font-medium">{benefit}</p>
+                  <p className="text-gray-300 font-medium">{benefit}</p>
                 </div>
               </div>
             ))}
@@ -74,23 +75,23 @@ export default function WebDevPage() {
         </div>
       </section>
 
-      <section className="py-20 lg:py-32 bg-gray-50 dark:bg-gray-900" aria-labelledby="process-heading">
+      <section className="py-20 lg:py-32 bg-black" aria-labelledby="process-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 id="process-heading" className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            <h2 id="process-heading" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Our Development Process
             </h2>
           </div>
 
           <div className="space-y-8">
             {devProcess.map((step) => (
-              <div key={step.step} className="flex gap-6 p-6 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700">
-                <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400 flex items-center justify-center text-xl font-bold">
+              <div key={step.step} className={cn('flex gap-6 p-6 glass rounded-xl hover:shadow-xl hover:border-white/20 transition-all duration-300')}>
+                <div className="flex-shrink-0 w-14 h-14 rounded-xl glass-strong bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl font-bold">
                   {step.step}
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{step.title}</h3>
-                  <p className="mt-2 text-gray-600 dark:text-gray-400">{step.description}</p>
+                  <h3 className="text-xl font-semibold text-white">{step.title}</h3>
+                  <p className="mt-2 text-gray-400">{step.description}</p>
                 </div>
               </div>
             ))}
