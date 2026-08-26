@@ -1,0 +1,171 @@
+---
+title: "Core Web Vitals: The Complete 2024 Optimization Guide"
+description: "Everything you need to know about Core Web Vitals — LCP, INP, CLS — and how to optimize them for better rankings and user experience."
+date: "2024-03-10"
+tags: ["Technical SEO", "Performance", "Core Web Vitals"]
+author: "James Park"
+---
+
+# Core Web Vitals: The Complete 2024 Optimization Guide
+
+Core Web Vitals are Google's user experience metrics that directly impact rankings. As of March 2024, **INP (Interaction to Next Paint)** replaced FID as the responsiveness metric.
+
+## The Three Metrics
+
+### 1. LCP — Largest Contentful Paint
+**Measures**: Loading performance  
+**Good**: ≤ 2.5s  
+**Needs Improvement**: 2.5s – 4s  
+**Poor**: > 4s  
+
+The time until the largest content element (image, video, text block) is visible.
+
+### 2. INP — Interaction to Next Paint
+**Measures**: Responsiveness  
+**Good**: ≤ 200ms  
+**Needs Improvement**: 200ms – 500ms  
+**Poor**: > 500ms  
+
+The latency of all user interactions (clicks, taps, keystrokes) — the worst interaction (or 98th percentile) defines the score.
+
+### 3. CLS — Cumulative Layout Shift
+**Measures**: Visual stability  
+**Good**: ≤ 0.1  
+**Needs Improvement**: 0.1 – 0.25  
+**Poor**: > 0.25  
+
+Unexpected layout shifts during page load.
+
+## Quick Wins for Each Metric
+
+### LCP Optimization
+
+```html
+<!-- 1. Preload LCP image -->
+<link rel="preload" as="image" href="/hero-image.webp" />
+
+<!-- 2. Use proper image formats -->
+<picture>
+  <source type="image/avif" srcset="/hero.avif" />
+  <source type="image/webp" srcset="/hero.webp" />
+  <img src="/hero.jpg" alt="..." width="1200" height="600" />
+</picture>
+
+<!-- 3. Optimize server response (TTFB) -->
+<!-- - Use CDN -->
+<!-- - Enable caching -->
+<!-- - Optimize database queries -->
+```
+
+### INP Optimization
+
+```javascript
+// 1. Break up long tasks
+function heavyComputation() {
+  // Use scheduler.yield() or setTimeout to yield to main thread
+  const tasks = workQueue.splice(0, 10);
+  tasks.forEach(task => task());
+  if (workQueue.length) scheduler.yield().then(heavyComputation);
+}
+
+// 2. Debounce/throttle event handlers
+const debouncedSearch = debounce(search, 300);
+
+// 3. Use web workers for heavy computation
+const worker = new Worker('/worker.js');
+worker.postMessage({ data: largeDataset });
+```
+
+### CLS Optimization
+
+```css
+/* 1. Reserve space for images */
+img { aspect-ratio: 16 / 9; }
+
+/* 2. Reserve space for ads/embeds */
+.ad-slot { min-height: 250px; }
+
+/* 3. Avoid inserting content above existing content */
+/* Use CSS transform for animations instead of layout properties */
+```
+
+## Measurement Tools
+
+| Tool | Use Case |
+|------|----------|
+| **PageSpeed Insights** | Lab + field data, specific recommendations |
+| **Search Console** | Field data across your site (28-day rolling) |
+| **Lighthouse** | Local development testing |
+| **Web Vitals Extension** | Real-time measurement while browsing |
+| **Chrome DevTools** | Performance panel for deep analysis |
+
+## Monitoring Strategy
+
+1. **Weekly**: Check Search Console Core Web Vitals report
+2. **Per Deploy**: Run Lighthouse CI in pipeline
+3. **Real-time**: Web Vitals JavaScript library for RUM
+
+```javascript
+// web-vitals.js - send to your analytics
+import { onCLS, onINP, onLCP } from 'web-vitals';
+
+function sendToAnalytics(metric) {
+  fetch('/api/metrics', {
+    method: 'POST',
+    body: JSON.stringify(metric),
+  });
+}
+
+onCLS(sendToAnalytics);
+onINP(sendToAnalytics);
+onLCP(sendToAnalytics);
+```
+
+## Common Pitfalls
+
+| Pitfall | Solution |
+|---------|----------|
+| Third-party scripts blocking main thread | Load async, defer, or move to web worker |
+| Font loading causing layout shifts | `font-display: swap`, preload fonts |
+| Dynamic content without reserved space | Use `min-height` or aspect-ratio |
+| Large JavaScript bundles | Code splitting, tree shaking, dynamic imports |
+| Unoptimized images | Next.js Image component, proper sizing, modern formats |
+
+## Next.js-Specific Optimizations
+
+```javascript
+// next.config.js
+module.exports = {
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+  },
+  experimental: {
+    optimizeCss: true,
+  },
+};
+
+// Use next/image for automatic optimization
+import Image from 'next/image';
+<Image
+  src="/hero.jpg"
+  alt="Hero"
+  width={1200}
+  height={600}
+  priority // for LCP element
+  placeholder="blur"
+  blurDataURL="data:image/..."
+/>;
+```
+
+## The Business Case
+
+Improving Core Web Vitals isn't just for rankings:
+
+- **1s faster LCP** → ~10% conversion increase (Google)
+- **Low CLS** → Fewer rage clicks, better trust
+- **Fast INP** → Smoother interactions, higher engagement
+
+---
+
+*Need help optimizing your Core Web Vitals? [Our development team](/services/web-dev) can audit and fix your site's performance.*
