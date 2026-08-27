@@ -12,42 +12,20 @@ interface HeroProps {
   className?: string;
 }
 
-const bgPattern = `data:image/svg+xml;base64,${btoa(`
-<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" opacity="0.06">
-  <defs>
-    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
-      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="currentColor" stroke-width="0.5"/>
-    </pattern>
-    <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
-      <circle cx="10" cy="10" r="1" fill="currentColor"/>
-    </pattern>
-  </defs>
-  <rect width="60" height="60" fill="url(#grid)"/>
-  <rect width="60" height="60" fill="url(#dots)"/>
-</svg>
-`)}`;
-
-const bgGradientMesh = `data:image/svg+xml;base64,${btoa(`
-<svg width="100%" height="100%" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-  <defs>
-    <radialGradient id="grad1" cx="20%" cy="30%" r="50%" fx="20%" fy="30%">
-      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.25"/>
-      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="grad2" cx="80%" cy="70%" r="50%" fx="80%" fy="70%">
-      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.2"/>
-      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="grad3" cx="50%" cy="50%" r="60%" fx="50%" fy="50%">
-      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.15"/>
-      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-  <rect width="800" height="600" fill="url(#grad1)"/>
-  <rect width="800" height="600" fill="url(#grad2)"/>
-  <rect width="800" height="600" fill="url(#grad3)"/>
-</svg>
-`)}`;
+const trustCards = [
+  {
+    title: 'Founder-Led',
+    description: 'Direct, hands-on work with every client, no account managers',
+  },
+  {
+    title: 'Modern Stack',
+    description: 'Built with the latest GEO, SEO, and web development practices',
+  },
+  {
+    title: 'Early Access',
+    description: 'Now accepting a limited number of founding clients',
+  },
+];
 
 export function Hero({
   title = 'We Build Digital Growth Engines',
@@ -58,20 +36,14 @@ export function Hero({
 }: HeroProps) {
   return (
     <section
-      className={cn('relative overflow-hidden bg-black py-20 lg:py-32', className)}
+      className={cn('relative overflow-hidden bg-gradient-mesh py-20 lg:py-32', className)}
       aria-labelledby="hero-title"
-      style={{
-        backgroundImage: `url("${bgGradientMesh}"), url("${bgPattern}")`,
-        backgroundSize: 'cover, 60px 60px',
-        backgroundPosition: 'center, center',
-        backgroundRepeat: 'no-repeat, repeat',
-      }}
     >
       {/* Animated gradient orbs */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-blue-500/20 blur-3xl animate-blob" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl animate-blob animation-delay-2000" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full bg-cyan-500/15 blur-3xl animate-blob animation-delay-4000" />
+        <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full orb-blue blur-3xl orb-blob" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full orb-purple blur-3xl orb-blob" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full orb-cyan blur-3xl orb-blob" />
       </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
@@ -111,19 +83,14 @@ export function Hero({
         </div>
 
         <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-3 lg:grid-cols-3">
-          {[
-            { value: '50+', label: 'Projects Delivered' },
-            { value: '30+', label: 'Active Clients' },
-            { value: '3', label: 'Core Services' },
-            { value: '98%', label: 'Client Retention' },
-          ].map((stat, index) => (
+          {trustCards.map((card, index) => (
             <div
-              key={stat.label}
+              key={card.title}
               className="text-center p-6 glass rounded-xl animate-fade-in-up hover:shadow-2xl hover:border-white/20 hover:-translate-y-1 transition-all duration-300"
               style={{ animationDelay: `${600 + index * 100}ms` }}
             >
-              <div className="text-3xl font-bold text-blue-400 animate-count-up" data-target={stat.value}>{stat.value}</div>
-              <div className="mt-1 text-sm text-gray-400">{stat.label}</div>
+              <div className="text-xl font-semibold text-white mb-2">{card.title}</div>
+              <div className="text-sm text-gray-400">{card.description}</div>
             </div>
           ))}
         </div>

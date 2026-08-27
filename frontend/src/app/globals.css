@@ -200,3 +200,39 @@ html {
   background-color: var(--color-primary);
   color: white;
 }
+
+/* Shared background gradient - consistent across all sections */
+.bg-gradient-mesh {
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 70%, rgba(139, 92, 246, 0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 60% at 50% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 70%),
+    url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBvcGFjaXR5PSIwLjA2Ij4KICA8ZGVmcz4KICAgIDxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8cGF0aCBkPSJNIDMwIDAgTCAwIDAgMCAzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMC41Ii8+CiAgICA8L3BhdHRlcm4+CiAgICA8cGF0dGVybiBpZD0iZG90cyIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPGNpcmNsZSBjeD0iMTAiIGN5PSIxMCIgcj0iMSIgZmlsbD0iY3VycmVudENvbG9yIi8+CiAgICA8L3BhdHRlcm4+CiA8L2RlZnM+CiA8cmVjdCB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIGZpbGw9InVybCgjZ3JpZCkiLz4KICA8cmVjdCB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIGZpbGw9InVybCgjZG90cyIpLz4KPC9zdmc+");
+  background-size: cover, 60px 60px;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
+}
+
+/* Floating gradient orbs */
+.orb-blob {
+  animation: blob 7s infinite ease-in-out;
+}
+
+.orb-blue {
+  background: rgba(59, 130, 246, 0.2);
+}
+
+.orb-purple {
+  background: rgba(139, 92, 246, 0.2);
+  animation-delay: 2000ms;
+}
+
+.orb-cyan {
+  background: rgba(6, 182, 212, 0.15);
+  animation-delay: 4000ms;
+}
+
+/* CTA section gradient overlay */
+.cta-gradient-overlay {
+  background: linear-gradient(to bottom right, rgba(59, 130, 246, 0.1), transparent, rgba(139, 92, 246, 0.1));
+}
