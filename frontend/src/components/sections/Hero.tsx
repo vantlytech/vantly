@@ -4,6 +4,8 @@ import { DashboardPreview } from './DashboardPreview';
 
 interface HeroProps {
   eyebrow?: string;
+  /** Shown below 640px, where the full eyebrow wraps. Defaults to `eyebrow`. */
+  eyebrowShort?: string;
   title?: React.ReactNode;
   description?: string;
   primaryCTA?: { label: string; href: string };
@@ -49,6 +51,7 @@ const servicePills = [
 
 export function Hero({
   eyebrow = 'Grow smarter. Rank higher. Convert more.',
+  eyebrowShort = 'Grow smarter. Rank higher.',
   title,
   description = 'At Vantly, we combine GEO, SEO, and cutting-edge website development to build digital experiences that rank, engage, and scale.',
   primaryCTA = { label: 'Get started now', href: '/contact' },
@@ -99,30 +102,31 @@ export function Hero({
   /* ---------- Home: split layout with the live dashboard ---------- */
   return (
     <section
-      className={cn('relative overflow-hidden pt-12 pb-16 lg:pt-16 lg:pb-20', className)}
+      className={cn('relative overflow-hidden pt-8 pb-12 sm:pt-12 sm:pb-16 lg:pt-16 lg:pb-20', className)}
       aria-labelledby="hero-title"
     >
       <div className="aurora" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 grid-lines" aria-hidden="true" />
 
       <div className="shell relative">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-10 xl:gap-12">
+        <div className="grid grid-cols-1 items-center gap-9 sm:gap-12 lg:grid-cols-[1fr_1.3fr] lg:gap-10 xl:gap-12">
           {/* Copy */}
           <div>
             {eyebrow && (
               <div className="animate-rise">
-                <span className="eyebrow normal-case tracking-[0.02em]">
+                <span className="eyebrow normal-case text-[0.625rem] tracking-[0.01em] sm:text-[0.6875rem] sm:tracking-[0.02em]">
                   <span className="relative flex h-1.5 w-1.5">
                     <span className="absolute inline-flex h-full w-full animate-pulse-ring rounded-full bg-blue-500" />
                     <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-blue-600" />
                   </span>
-                  {eyebrow}
+                  <span className="sm:hidden">{eyebrowShort ?? eyebrow}</span>
+                  <span className="hidden sm:inline">{eyebrow}</span>
                 </span>
               </div>
             )}
 
             <h1
-              id="hero-title" className="animate-rise delay-100 display text-hero mt-6 max-w-[15ch] text-balance"
+              id="hero-title" className="animate-rise delay-100 display text-hero mt-5 max-w-[15ch] text-balance sm:mt-6"
             >
               {title ?? (
                 <>
@@ -132,16 +136,16 @@ export function Hero({
               )}
             </h1>
 
-            <p className="animate-rise delay-200 text-lede mt-6 max-w-lg text-pretty">
+            <p className="animate-rise delay-200 text-lede mt-4 max-w-lg text-pretty sm:mt-6">
               {description}
             </p>
 
-            <div className="animate-rise delay-300 mt-7 flex flex-wrap gap-2.5">
+            <div className="animate-rise delay-300 mt-6 flex flex-wrap gap-2 sm:mt-7 sm:gap-2.5">
               {servicePills.map((pill) => (
                 <span
                   key={pill.label}
                   className={cn(
-                    'inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-[0.8125rem] font-medium transition-transform duration-300 hover:-translate-y-0.5',
+                    'inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[0.75rem] font-medium transition-transform duration-300 hover:-translate-y-0.5 sm:gap-2 sm:px-3.5 sm:py-2 sm:text-[0.8125rem]',
                     pill.className
                   )}
                 >
@@ -151,7 +155,7 @@ export function Hero({
               ))}
             </div>
 
-            <div className="animate-rise delay-400 mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="animate-rise delay-400 mt-7 flex flex-col gap-2.5 sm:mt-9 sm:flex-row sm:gap-3">
               <Button href={primaryCTA.href} variant="primary" size="lg" className="w-full sm:w-auto">
                 {primaryCTA.label}
                 <svg className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -167,7 +171,7 @@ export function Hero({
             </div>
 
             {microcopy.length > 0 && (
-              <ul className="animate-rise delay-500 mt-7 flex flex-wrap items-center gap-x-6 gap-y-2" role="list">
+              <ul className="animate-rise delay-500 mt-6 flex flex-wrap items-center gap-x-4 gap-y-1.5 sm:mt-7 sm:gap-x-6 sm:gap-y-2" role="list">
                 {microcopy.map((item) => (
                   <li key={item} className="flex items-center gap-1.5 text-[0.8125rem] text-[#7a8399]">
                     <svg className="h-3.5 w-3.5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: 'standalone',
+  // Vercel does its own output tracing; 'standalone' breaks its build step
+  // (missing next-server.js.nft.json). Only used for the Docker image.
+  ...(process.env.VERCEL ? {} : { output: 'standalone' as const }),
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [

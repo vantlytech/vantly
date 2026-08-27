@@ -53,7 +53,7 @@ export function DashboardPreview() {
           {/* Sidebar */}
           <aside className="hidden w-[10.5rem] shrink-0 border-r border-[#eef1f7] bg-[#fbfcfe] p-4 sm:block">
             <div className="flex items-center gap-1.5 px-1.5">
-              <LogoMark priority className="h-5 w-auto" />
+              <LogoMark priority className="h-3.5 w-auto" />
               <span className="text-[0.875rem] font-semibold tracking-[-0.02em] text-[#0b1220]">
                 Vantly
               </span>
@@ -82,7 +82,7 @@ export function DashboardPreview() {
           </aside>
 
           {/* Main panel */}
-          <div className="min-w-0 flex-1 p-5 sm:p-6">
+          <div className="min-w-0 flex-1 p-4 sm:p-6">
             <div className="animate-rise delay-200 flex items-start justify-between gap-3">
               <div>
                 <p className="text-[0.9375rem] font-semibold text-[#0b1220]">Welcome back, Alex</p>
@@ -96,12 +96,12 @@ export function DashboardPreview() {
             </div>
 
             {/* Stat tiles */}
-            <div className="mt-5 grid grid-cols-2 gap-3 lg:grid-cols-4">
+            <div className="mt-4 grid grid-cols-2 gap-2.5 sm:mt-5 sm:gap-3 lg:grid-cols-4">
               {stats.map((stat) => (
                 <div
                   key={stat.label}
                   className={cn(
-                    'animate-rise rounded-xl border border-[#eef1f7] bg-[#fbfcfe] p-4',
+                    'animate-rise rounded-xl border border-[#eef1f7] bg-[#fbfcfe] p-3 sm:p-4',
                     stat.delay
                   )}
                 >
@@ -117,8 +117,8 @@ export function DashboardPreview() {
             </div>
 
             {/* Chart + keywords */}
-            <div className="mt-4 grid grid-cols-1 gap-3.5 lg:grid-cols-[1.35fr_1fr]">
-              <div className="animate-rise delay-500 rounded-xl border border-[#eef1f7] p-4">
+            <div className="mt-3 grid grid-cols-1 gap-3 sm:mt-4 sm:gap-3.5 lg:grid-cols-[1.35fr_1fr]">
+              <div className="animate-rise delay-500 rounded-xl border border-[#eef1f7] p-3.5 sm:p-4">
                 <div className="flex items-center justify-between">
                   <p className="whitespace-nowrap text-[0.8125rem] font-semibold text-[#0b1220]">
                     AI visibility
@@ -134,7 +134,7 @@ export function DashboardPreview() {
                   </div>
                 </div>
 
-                <svg viewBox="0 0 272 120" className="mt-4 h-36 w-full" fill="none" aria-hidden="true">
+                <svg viewBox="0 0 272 120" className="mt-3 h-28 w-full sm:mt-4 sm:h-36" fill="none" aria-hidden="true">
                   {[24, 52, 80, 108].map((y) => (
                     <line key={y} x1="0" y1={y} x2="272" y2={y} stroke="#eef1f7" strokeWidth="1" />
                   ))}
@@ -152,7 +152,7 @@ export function DashboardPreview() {
                 </svg>
               </div>
 
-              <div className="animate-rise delay-600 rounded-xl border border-[#eef1f7] p-4">
+              <div className="animate-rise delay-600 rounded-xl border border-[#eef1f7] p-3.5 sm:p-4">
                 <p className="text-[0.8125rem] font-semibold text-[#0b1220]">Top keywords</p>
                 <ul className="mt-3 space-y-2.5" role="list">
                   {keywords.map((keyword) => (
@@ -179,7 +179,7 @@ export function DashboardPreview() {
             </div>
 
             {/* AI insight callout */}
-            <div className="animate-rise delay-700 mt-4 flex items-center gap-3 rounded-xl border border-blue-100 bg-blue-50/70 p-4">
+            <div className="animate-rise delay-700 mt-3 flex items-center gap-2.5 rounded-xl border border-blue-100 bg-blue-50/70 p-3.5 sm:mt-4 sm:gap-3 sm:p-4">
               <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 text-white">
                 <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z" />

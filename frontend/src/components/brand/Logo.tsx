@@ -25,7 +25,7 @@ export function LogoMark({ className, priority }: LogoMarkProps) {
       height={MARK_H}
       priority={priority}
       aria-hidden="true"
-      className={cn('h-8 w-auto object-contain', className)}
+      className={cn('h-4 w-auto object-contain', className)}
     />
   );
 }
@@ -50,7 +50,7 @@ export function Logo({
     <>
       <LogoMark
         priority={priority}
-        className="h-8 w-auto shrink-0 transition-transform duration-500 ease-out group-hover:-translate-y-0.5 group-hover:scale-105"
+        className="h-4 w-auto shrink-0 transition-transform duration-500 ease-out group-hover:-translate-y-0.5 group-hover:scale-105"
       />
       {wordmark && (
         <span
