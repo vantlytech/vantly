@@ -15,7 +15,7 @@ interface CTAProps {
 export function CTA({
   title = 'Ready to be the answer?',
   description = 'Tell us where you want to be in twelve months. We will tell you honestly whether we can get you there — and send you a free visibility audit either way.',
-  primaryCTA = { label: 'Get a free visibility audit', href: '/contact' },
+  primaryCTA = { label: 'Book a Slot', href: 'https://calendly.com/vantlytech/30min' },
   secondaryCTA = { label: 'View pricing', href: '/pricing' },
   assurances = ['Reply within 24 hours', 'No obligation', 'You keep the audit'],
   className,

@@ -178,7 +178,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </Link>{' '}
             or{' '}
             <Link
-              href="/contact"
+              href="https://calendly.com/vantlytech/30min"
+              target="_blank"
+              rel="noopener noreferrer"
               className="font-medium text-blue-600 underline underline-offset-4 transition-colors hover:text-blue-800"
             >
               get in touch

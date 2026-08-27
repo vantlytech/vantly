@@ -9,56 +9,53 @@ interface PricingTier {
   cadence?: string;
   description: string;
   features: string[];
-  cta: { label: string; href: string };
+  cta: { label: string; href: string; target?: string; rel?: string };
   popular?: boolean;
+  badge?: string;
 }
 
 const pricingTiers: PricingTier[] = [
   {
-    name: 'Starter',
-    price: '$2,500',
-    cadence: '/month',
-    description: 'For small businesses laying real foundations.',
+    name: 'Starter Audit',
+    price: '$199',
+    description: 'A comprehensive SEO + GEO audit of your current online presence, with a clear action plan you can implement yourself or hand to us.',
     features: [
-      'Technical SEO audit',
-      'Keyword research (20 keywords)',
-      'On-page optimization (10 pages)',
-      'Monthly reporting',
-      'Email support',
+      'Full technical SEO audit',
+      'GEO / AI-citation readiness check',
+      'Competitor gap analysis',
+      '30-minute strategy call to walk through findings',
     ],
-    cta: { label: 'Get started', href: '/contact?plan=starter' },
+    cta: { label: 'Book a Slot', href: 'https://calendly.com/vantlytech/30min', target: '_blank', rel: 'noopener noreferrer' },
+    badge: 'Best for: Testing us out, low commitment',
   },
   {
-    name: 'Growth',
-    price: '$5,000',
+    name: 'Growth Package',
+    price: '$799',
     cadence: '/month',
-    description: 'For companies ready to scale organic and AI visibility.',
+    description: 'Ongoing SEO and GEO optimization to grow your organic and AI-search visibility month over month.',
     features: [
-      'Everything in Starter',
-      'GEO optimization (AI search)',
-      'Content strategy & creation (4/mo)',
-      'Link building campaign',
-      'Weekly check-ins',
-      'Priority support',
+      'Everything in Starter Audit',
+      'Monthly content optimization',
+      'Structured data / schema implementation',
+      'Monthly performance reporting',
+      'Direct Slack / email access',
     ],
-    cta: { label: 'Start growing', href: '/contact?plan=growth' },
+    cta: { label: 'Book a Slot', href: 'https://calendly.com/vantlytech/30min', target: '_blank', rel: 'noopener noreferrer' },
     popular: true,
+    badge: 'Best for: Businesses ready to grow consistently',
   },
   {
-    name: 'Enterprise',
-    price: '$10,000+',
-    cadence: '/month',
-    description: 'For established brands with complex requirements.',
+    name: 'Full Partnership',
+    price: 'Custom',
+    description: 'The complete package — SEO, GEO, and ongoing web development support, treated as an extension of your team.',
     features: [
-      'Everything in Growth',
-      'Custom development projects',
-      'Dedicated senior lead',
-      'Advanced analytics & dashboards',
-      'Multi-language SEO',
-      'Priority incident response',
-      'SLA guarantees',
+      'Everything in Growth Package',
+      'Custom web development & maintenance',
+      'Priority support & faster turnaround',
+      'Quarterly strategy sessions',
     ],
-    cta: { label: 'Contact sales', href: '/contact?plan=enterprise' },
+    cta: { label: 'Book a Slot', href: 'https://calendly.com/vantlytech/30min', target: '_blank', rel: 'noopener noreferrer' },
+    badge: 'Best for: Businesses wanting a full digital partner',
   },
 ];
 
@@ -123,11 +120,19 @@ export function PricingSection({ className, withIntro = false }: PricingSectionP
 
                 <Button
                   href={tier.cta.href}
+                  target={tier.cta.target}
+                  rel={tier.cta.rel}
                   variant={tier.popular ? 'primary' : 'secondary'}
                   className="mt-9 w-full"
                 >
                   {tier.cta.label}
                 </Button>
+
+                {tier.badge && (
+                  <p className="mt-4 text-center text-[0.8125rem] text-[#7a8399]">
+                    {tier.badge}
+                  </p>
+                )}
               </div>
             </StaggerItem>
           ))}
@@ -135,7 +140,7 @@ export function PricingSection({ className, withIntro = false }: PricingSectionP
 
         <Reveal delay={0.2}>
           <p className="mt-10 text-center text-[0.875rem] text-[#7a8399]">
-            All plans are month-to-month. Annual billing saves 15%.
+            Not sure yet? Start with the Starter Audit — if we don&apos;t find at least 5 actionable improvements, you get a full refund.
           </p>
         </Reveal>
       </div>

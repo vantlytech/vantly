@@ -29,11 +29,23 @@ const defaultFaqs: FaqItem[] = [
   },
   {
     q: 'What does it cost?',
-    a: 'Plans start at $2,500 per month, month to month. Larger scopes are quoted after the audit so the number reflects real work rather than a guess.',
+    a: 'Our pricing starts at $199 for a one-time Starter Audit, with ongoing Growth Packages from $799/month. Full Partnership pricing is custom based on scope. See our Pricing page for full details.',
   },
   {
     q: 'What happens in the free audit?',
     a: 'We check where you currently appear in AI answers and organic search, identify the gaps that matter most, and send you the findings. There is no obligation, and you keep the audit either way.',
+  },
+  {
+    q: 'Do you offer a guarantee?',
+    a: 'Yes — if our Starter Audit doesn\'t surface at least 5 actionable improvements for your business, we\'ll refund you in full.',
+  },
+  {
+    q: 'Why should I trust a new agency?',
+    a: 'We\'re a new agency, and we\'re upfront about that. That means you get direct, hands-on attention from our core team on every project — not junior staff buried under dozens of accounts. Our Starter Audit is a low-risk way to see our work firsthand before committing to anything larger.',
+  },
+  {
+    q: 'What\'s included in the Starter Audit?',
+    a: 'A full technical SEO audit, a GEO/AI-citation readiness check, competitor gap analysis, and a 30-minute call to walk through the findings together — all for a one-time $199.',
   },
 ];
 
@@ -84,7 +96,9 @@ export function FAQ({
                 </p>
 
                 <Link
-                  href="/contact"
+                  href="https://calendly.com/vantlytech/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mt-5 inline-flex items-center gap-1.5 text-[0.875rem] font-medium text-blue-600 transition-colors duration-300 hover:text-blue-800"
                 >
                   Ask us directly

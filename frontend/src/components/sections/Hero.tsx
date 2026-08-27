@@ -54,7 +54,7 @@ export function Hero({
   eyebrowShort = 'Grow smarter. Rank higher.',
   title,
   description = 'At Vantly, we combine GEO, SEO, and cutting-edge website development to build digital experiences that rank, engage, and scale.',
-  primaryCTA = { label: 'Get started now', href: '/contact' },
+  primaryCTA = { label: 'Get started now', href: 'https://calendly.com/vantlytech/30min' },
   secondaryCTA = { label: 'Explore services', href: '/services' },
   showPreview = true,
   microcopy = ['No long contracts', 'Founder-led delivery', 'Reporting you can verify'],

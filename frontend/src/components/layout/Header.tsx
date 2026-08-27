@@ -74,14 +74,8 @@ export function Header() {
         </div>
 
         <div className="hidden items-center gap-2 md:flex">
-          <Link
-            href="/contact"
-            className="rounded-full px-3.5 py-2 text-[0.8125rem] font-medium text-[#475069] transition-colors duration-300 hover:text-[#0b1220]"
-          >
-            Contact
-          </Link>
-          <Button href="/contact" variant="primary" size="sm">
-            Get a free audit
+          <Button href="https://calendly.com/vantlytech/30min" target="_blank" rel="noopener noreferrer" variant="primary" size="sm">
+            Book Slot
           </Button>
         </div>
 
@@ -122,7 +116,7 @@ export function Header() {
             className="overflow-hidden border-t border-[#e9edf5] bg-white/95 backdrop-blur-xl md:hidden"
           >
             <div className="shell flex flex-col py-4">
-              {[...navigation, { name: 'Contact', href: '/contact' }].map((item) => (
+              {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
@@ -134,8 +128,8 @@ export function Header() {
                   {item.name}
                 </Link>
               ))}
-              <Button href="/contact" variant="primary" size="md" className="mt-5 w-full">
-                Get a free audit
+              <Button href="https://calendly.com/vantlytech/30min" target="_blank" rel="noopener noreferrer" variant="primary" size="md" className="mt-5 w-full">
+                Book a Slot
               </Button>
             </div>
           </motion.div>

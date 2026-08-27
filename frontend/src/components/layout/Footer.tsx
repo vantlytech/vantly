@@ -18,7 +18,6 @@ const footerLinks = [
       { name: 'Pricing', href: '/pricing' },
       { name: 'Case studies', href: '/case-studies' },
       { name: 'Blog', href: '/blog' },
-      { name: 'Contact', href: '/contact' },
     ],
   },
   {
@@ -106,9 +105,24 @@ export function Footer() {
             <p className="mt-5 text-body text-[#5b6478]">
               Free visibility audit, no strings.
             </p>
-            <Button href="/contact" variant="primary" size="sm" className="mt-4">
+            <Button href="https://calendly.com/vantlytech/30min" target="_blank" rel="noopener noreferrer" variant="primary" size="sm" className="mt-4">
               Request audit
             </Button>
+
+            <div className="mt-6">
+              <h3 className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-[#98a1b3]">
+                Connect
+              </h3>
+              <a
+                href="mailto:vantlytech@gmail.com"
+                className="mt-3 flex items-center gap-2 text-[0.9375rem] text-[#475069] transition-colors duration-300 hover:text-blue-700"
+              >
+                <svg className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                vantlytech@gmail.com
+              </a>
+            </div>
           </div>
         </div>
 

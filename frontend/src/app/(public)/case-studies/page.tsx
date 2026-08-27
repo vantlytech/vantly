@@ -143,7 +143,9 @@ export default function CaseStudiesPage() {
                   </dl>
 
                   <a
-                    href="/contact"
+                    href="https://calendly.com/vantlytech/30min"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="mt-auto inline-flex items-center gap-1.5 pt-7 text-[0.875rem] font-medium text-blue-600 transition-colors duration-300 hover:text-blue-800"
                   >
                     Discuss a project like this

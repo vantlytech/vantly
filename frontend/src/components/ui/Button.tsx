@@ -24,6 +24,8 @@ interface ButtonProps extends Omit<ComponentPropsWithoutRef<'button'>, 'href'> {
   loading?: boolean;
   asChild?: boolean;
   href?: string;
+  target?: string;
+  rel?: string;
 }
 
 const baseStyles =

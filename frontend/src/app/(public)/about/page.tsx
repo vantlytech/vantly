@@ -49,7 +49,7 @@ export default function AboutPage() {
           </>
         }
         description="Vantly was founded on a simple belief: businesses deserve digital work they can verify. No fluff, no black boxes — just measurable growth."
-        primaryCTA={{ label: 'Work with us', href: '/contact' }}
+        primaryCTA={{ label: 'Work with us', href: 'https://calendly.com/vantlytech/30min' }}
         secondaryCTA={{ label: 'See our work', href: '/case-studies' }}
         showPreview={false}
         microcopy={[]}
@@ -115,7 +115,7 @@ export default function AboutPage() {
       <CTA
         title="Ready to start?"
         description="Tell us about your goals and we will tell you honestly whether we are the right fit."
-        primaryCTA={{ label: 'Start a conversation', href: '/contact' }}
+        primaryCTA={{ label: 'Start a conversation', href: 'https://calendly.com/vantlytech/30min' }}
         secondaryCTA={{ label: 'See our work', href: '/case-studies' }}
       />
     </>
