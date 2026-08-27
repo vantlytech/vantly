@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/layout';
 import { Footer } from '@/components/layout';
+import { SITE_URL } from '@/lib/site';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -11,7 +12,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: '/',
+  },
   title: {
     default: 'Vantly | GEO, SEO & Website Development Agency',
     template: '%s | Vantly',
@@ -39,20 +43,11 @@ export const metadata: Metadata = {
     siteName: 'Vantly',
     title: 'Vantly | GEO, SEO & Website Development Agency',
     description: 'We help businesses grow through Generative Engine Optimization (GEO), Search Engine Optimization (SEO), and custom website development.',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Vantly Agency',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Vantly | GEO, SEO & Website Development Agency',
     description: 'We help businesses grow through Generative Engine Optimization (GEO), Search Engine Optimization (SEO), and custom website development.',
-    images: ['/og-image.png'],
     creator: '@vantly',
   },
   icons: {
@@ -63,9 +58,9 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-icon.png',
   },
-  verification: {
-    google: 'google-site-verification-code',
-  },
+  verification: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION }
+    : undefined,
 };
 
 export const viewport: Viewport = {
