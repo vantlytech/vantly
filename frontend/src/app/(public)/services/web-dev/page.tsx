@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Hero } from '@/components/sections';
+import { PageHeader } from '@/components/sections';
 import { CTA } from '@/components/sections';
 import { cn } from '@/lib/utils';
 
@@ -37,11 +37,9 @@ const techStack = [
 export default function WebDevPage() {
   return (
     <>
-      <Hero
+      <PageHeader
         title="Custom Website Development"
-        description="Fast, accessible, conversion-focused websites built with modern technology. Your digital foundation, done right."
-        primaryCTA={{ label: 'Start a Project', href: '/contact?service=web-dev' }}
-        secondaryCTA={{ label: 'View Pricing', href: '/pricing' }}
+        description="Fast, accessible, conversion-focused websites. Your digital foundation, done right."
       />
 
       <section className="py-20 lg:py-32 bg-black" aria-labelledby="benefits-heading">

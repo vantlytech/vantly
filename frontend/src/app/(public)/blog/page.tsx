@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { Hero } from '@/components/sections';
+import { PageHeader } from '@/components/sections';
 import { cn } from '@/lib/utils';
 
 const BLOG_DIR = path.join(process.cwd(), 'src/content/blog');
@@ -41,10 +41,9 @@ export default function BlogPage() {
 
   return (
     <>
-      <Hero
+      <PageHeader
         title="Insights & Strategy"
-        description="Deep dives into GEO, SEO, web performance, and the future of digital growth. Written by practitioners, not theorists."
-        className="py-16 lg:py-24"
+        description="Deep dives into GEO, SEO, web performance, and digital growth."
       />
 
       <section className="py-20 lg:py-32 bg-black" aria-labelledby="posts-heading">

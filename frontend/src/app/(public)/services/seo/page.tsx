@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Hero } from '@/components/sections';
+import { PageHeader } from '@/components/sections';
 import { CTA } from '@/components/sections';
 import { cn } from '@/lib/utils';
 
@@ -31,11 +31,9 @@ const seoProcess = [
 export default function SEOPage() {
   return (
     <>
-      <Hero
+      <PageHeader
         title="Search Engine Optimization (SEO)"
-        description="Sustainable organic growth that compounds over time. Technical excellence, strategic content, and earned authority."
-        primaryCTA={{ label: 'Free SEO Audit', href: '/contact?service=seo' }}
-        secondaryCTA={{ label: 'View Pricing', href: '/pricing' }}
+        description="Sustainable organic growth. Technical excellence, strategic content, earned authority."
       />
 
       <section className="py-20 lg:py-32 bg-black" aria-labelledby="benefits-heading">

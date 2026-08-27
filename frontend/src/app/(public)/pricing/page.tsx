@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Hero } from '@/components/sections';
+import { PageHeader } from '@/components/sections';
 import { PricingSection } from '@/components/sections';
 import { CTA } from '@/components/sections';
 
@@ -11,11 +11,9 @@ export const metadata: Metadata = {
 export default function PricingPage() {
   return (
     <>
-      <Hero
+      <PageHeader
         title="Simple, Transparent Pricing"
         description="No hidden fees. No long-term contracts. Just clear pricing for measurable results."
-        primaryCTA={{ label: 'Get a Custom Quote', href: '/contact' }}
-        secondaryCTA={{ label: 'View Services', href: '/services' }}
       />
       <PricingSection />
       

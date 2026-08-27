@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Hero } from '@/components/sections';
+import { PageHeader } from '@/components/sections';
 import { CTA } from '@/components/sections';
 import { cn } from '@/lib/utils';
 
@@ -101,10 +101,9 @@ const colorClasses = {
 export default function CaseStudiesPage() {
   return (
     <>
-      <Hero
+      <PageHeader
         title="Our Work Speaks for Itself"
-        description="Real results from real clients. See how we've helped companies across industries achieve measurable digital growth."
-        className="py-16 lg:py-24"
+        description="Real results from real clients across industries."
       />
 
       <section className="py-20 lg:py-32 bg-black" aria-labelledby="case-studies-heading">

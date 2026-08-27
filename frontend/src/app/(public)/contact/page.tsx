@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import { Hero } from '@/components/sections';
 import { ContactForm } from '@/components/forms';
 
 export const metadata: Metadata = {
@@ -10,12 +9,6 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <Hero
-        title="Let's Start a Conversation"
-        description="Have a project in mind? Tell us about it and we'll get back to you within 24 hours with initial thoughts."
-        className="py-16 lg:py-24"
-      />
-
       <section className="py-20 lg:py-32 bg-black" aria-labelledby="contact-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">

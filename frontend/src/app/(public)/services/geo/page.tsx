@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Hero } from '@/components/sections';
+import { PageHeader } from '@/components/sections';
 import { CTA } from '@/components/sections';
 import { cn } from '@/lib/utils';
 
@@ -31,11 +31,9 @@ const geoProcess = [
 export default function GEOPage() {
   return (
     <>
-      <Hero
+      <PageHeader
         title="Generative Engine Optimization (GEO)"
-        description="Be the answer AI gives. Optimize for ChatGPT, Perplexity, Google SGE, and the new era of search."
-        primaryCTA={{ label: 'Start GEO Audit', href: '/contact?service=geo' }}
-        secondaryCTA={{ label: 'View Pricing', href: '/pricing' }}
+        description="Be the answer AI gives. Optimize for ChatGPT, Perplexity, Google SGE."
       />
 
       <section className="py-20 lg:py-32 bg-black" aria-labelledby="benefits-heading">

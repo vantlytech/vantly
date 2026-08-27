@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import { Hero } from '@/components/sections';
+import { PageHeader } from '@/components/sections';
 
 const BLOG_DIR = path.join(process.cwd(), 'src/content/blog');
 
@@ -107,10 +107,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
-      <Hero
+      <PageHeader
         title={frontmatter.title}
         description={frontmatter.description}
-        className="py-16 lg:py-24"
       />
 
       <article className="py-20 lg:py-32 bg-black" itemScope itemType="https://schema.org/BlogPosting">
