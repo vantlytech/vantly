@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'About Us',
-  description: 'Learn about Vantly — our mission, values, and the team behind your digital growth.',
+  description: 'Learn about Vantly — our mission, values, and approach to digital growth.',
 };
 
 const values = [
@@ -15,18 +15,27 @@ const values = [
   { title: 'Partnership Mindset', description: 'We are an extension of your team. Your wins are our wins. We are in it for the long haul.' },
 ];
 
-const team = [
-  { name: 'Alex Chen', role: 'Founder & CEO', bio: 'Former Google Search engineer. 10+ years in SEO and AI. Built Vantly to bridge the gap between traditional SEO and the AI search future.', image: '/team/alex.jpg' },
-  { name: 'Maria Santos', role: 'Head of Strategy', bio: 'Led growth at two Series B startups. Expert in content strategy, topical authority, and GEO methodology.', image: '/team/maria.jpg' },
-  { name: 'James Park', role: 'Lead Developer', bio: 'Full-stack engineer specializing in Next.js, performance optimization, and headless architectures.', image: '/team/james.jpg' },
-  { name: 'Priya Sharma', role: 'SEO Director', bio: 'Technical SEO specialist with enterprise experience. Speaker at BrightonSEO and MozCon.', image: '/team/priya.jpg' },
-];
-
-const milestones = [
-  { year: '2022', title: 'Founded', description: 'Started as a two-person SEO consultancy in San Francisco.' },
-  { year: '2023', title: 'GEO Pioneer', description: 'Launched first Generative Engine Optimization service offering.' },
-  { year: '2024', title: 'Team Expansion', description: 'Grew to 12 people across strategy, development, and operations.' },
-  { year: '2025', title: '50+ Clients', description: 'Served clients across SaaS, e-commerce, fintech, and professional services.' },
+const approachSteps = [
+  {
+    number: '01',
+    title: 'Discover',
+    description: 'We audit your current SEO, GEO, and web presence to identify what\'s working, what\'s not, and where the opportunities are.',
+  },
+  {
+    number: '02',
+    title: 'Strategy',
+    description: 'We build a tailored plan based on your specific goals, budget, and timeline — no generic templates.',
+  },
+  {
+    number: '03',
+    title: 'Execute',
+    description: 'We implement changes with full transparency. You\'ll always know what we\'re doing and why.',
+  },
+  {
+    number: '04',
+    title: 'Measure',
+    description: 'We track real metrics tied to business outcomes and adjust the strategy based on what\'s actually working.',
+  },
 ];
 
 export default function AboutPage() {
@@ -39,7 +48,7 @@ export default function AboutPage() {
         secondaryCTA={{ label: 'View Our Work', href: '/case-studies' }}
       />
 
-      <section className="py-20 lg:py-32 bg-black" aria-labelledby="mission-heading">
+      <section className="py-20 lg:py-32 bg-gradient-mesh" aria-labelledby="mission-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center mb-16">
             <h2 id="mission-heading" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
@@ -61,44 +70,25 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-20 lg:py-32 bg-black" aria-labelledby="team-heading">
+      <section className="py-20 lg:py-32 bg-gradient-mesh" aria-labelledby="approach-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 id="team-heading" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Meet the Team
+          <div className="mx-auto max-w-3xl text-center mb-16">
+            <h2 id="approach-heading" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              Our Approach
             </h2>
+            <p className="mt-4 text-lg text-gray-400">
+              A clear, transparent process from first conversation to measurable results.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {team.map((member) => (
-              <div key={member.name} className="text-center">
-                <div className="mx-auto w-32 h-32 rounded-full glass-strong mb-4 flex items-center justify-center text-white text-3xl font-bold">
-                  {member.name.charAt(0)}
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
+            {approachSteps.map((step) => (
+              <div key={step.number} className="p-6 glass rounded-xl hover:shadow-xl hover:border-white/20 transition-all duration-300 text-left">
+                <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-xl glass-strong text-blue-400 font-bold text-xl">
+                  {step.number}
                 </div>
-                <h3 className="text-lg font-semibold text-white">{member.name}</h3>
-                <p className="text-sm text-blue-400">{member.role}</p>
-                <p className="mt-2 text-sm text-gray-400">{member.bio}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 lg:py-32 bg-black" aria-labelledby="journey-heading">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 id="journey-heading" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Our Journey
-            </h2>
-          </div>
-
-          <div className="mx-auto max-w-2xl">
-            {milestones.map((milestone) => (
-              <div key={milestone.year} className="relative pl-8 pb-12 border-l-2 border-gray-700 last:border-0 last:pb-0">
-                <div className="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-500 border-4 border-black -ml-2" />
-                <div className="text-sm font-medium text-blue-400">{milestone.year}</div>
-                <h3 className="text-lg font-semibold text-white mt-1">{milestone.title}</h3>
-                <p className="mt-1 text-gray-400">{milestone.description}</p>
+                <h3 className="text-xl font-semibold text-white mb-3">{step.title}</h3>
+                <p className="text-gray-400">{step.description}</p>
               </div>
             ))}
           </div>
@@ -106,10 +96,10 @@ export default function AboutPage() {
       </section>
 
       <CTA
-        title="Want to Join the Journey?"
-        description="We are always looking for talented people who share our values. Check out our open roles."
-        primaryCTA={{ label: 'View Careers', href: '/careers' }}
-        secondaryCTA={{ label: 'Contact Us', href: '/contact' }}
+        title="Ready to Start?"
+        description="Let's talk about your goals and see if we're a good fit."
+        primaryCTA={{ label: 'Start a Conversation', href: '/contact' }}
+        secondaryCTA={{ label: 'View Our Work', href: '/case-studies' }}
       />
     </>
   );
