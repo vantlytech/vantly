@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
-import { PageHeader } from '@/components/sections';
-import { CTA } from '@/components/sections';
-import { cn } from '@/lib/utils';
+import { PageHeader, CTA } from '@/components/sections';
+import { Stagger, StaggerItem } from '@/components/motion';
 
 export const metadata: Metadata = {
   title: 'Case Studies',
@@ -20,7 +19,6 @@ const caseStudies = [
     ],
     description: 'Implemented comprehensive GEO + SEO strategy for B2B SaaS platform. Achieved top AI citations for 50+ target queries within 6 months.',
     logo: 'TF',
-    color: 'blue',
   },
   {
     title: 'ScaleUp Labs',
@@ -33,7 +31,6 @@ const caseStudies = [
     ],
     description: 'Rebuilt e-commerce platform on Next.js with headless Shopify. Core Web Vitals optimization drove massive conversion improvements.',
     logo: 'SL',
-    color: 'green',
   },
   {
     title: 'GreenLeaf Commerce',
@@ -46,7 +43,6 @@ const caseStudies = [
     ],
     description: 'Content-led SEO strategy for sustainable DTC brand. Built topical authority in competitive wellness space.',
     logo: 'GL',
-    color: 'emerald',
   },
   {
     title: 'DataCore Analytics',
@@ -59,7 +55,6 @@ const caseStudies = [
     ],
     description: 'Custom web app with integrated GEO strategy. Technical documentation optimized for AI retrieval drove qualified enterprise leads.',
     logo: 'DC',
-    color: 'purple',
   },
   {
     title: 'Nexus Digital Agency',
@@ -72,7 +67,6 @@ const caseStudies = [
     ],
     description: 'Agency\'s own marketing transformation. Demonstrated expertise by ranking for high-competition agency keywords.',
     logo: 'ND',
-    color: 'orange',
   },
   {
     title: 'Apex FinTech',
@@ -85,73 +79,88 @@ const caseStudies = [
     ],
     description: 'Full-stack fintech platform with regulatory compliance. Accessibility-first approach with integrated SEO/GEO from launch.',
     logo: 'AF',
-    color: 'indigo',
   },
 ];
-
-const colorClasses = {
-  blue: 'glass-strong bg-blue-500/20 text-blue-400 border border-blue-500/30',
-  green: 'glass-strong bg-green-500/20 text-green-400 border border-green-500/30',
-  emerald: 'glass-strong bg-emerald-500/20 text-emerald-400 border border-emerald-500/30',
-  purple: 'glass-strong bg-purple-500/20 text-purple-400 border border-purple-500/30',
-  orange: 'glass-strong bg-orange-500/20 text-orange-400 border border-orange-500/30',
-  indigo: 'glass-strong bg-indigo-500/20 text-indigo-400 border border-indigo-500/30',
-};
 
 export default function CaseStudiesPage() {
   return (
     <>
       <PageHeader
-        title="Our Work Speaks for Itself"
-        description="Real results from real clients across industries."
+        eyebrow="Selected work"
+        title="Our work speaks for itself"
+        description="Real results from real clients, across industries."
       />
 
-      <section className="py-20 lg:py-32 bg-black" aria-labelledby="case-studies-heading">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-3">
+      <section className="section-tight" aria-labelledby="case-studies-heading">
+        <div className="shell">
+          <h2 id="case-studies-heading" className="sr-only">
+            Case studies
+          </h2>
+
+          <Stagger className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3" step={0.08}>
             {caseStudies.map((study) => (
-              <article
-                key={study.title}
-                className="glass rounded-2xl p-6 h-full hover:shadow-2xl hover:border-white/20 hover:-translate-y-1 transition-all duration-300"
-              >
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <div className={cn('w-12 h-12 rounded-xl flex items-center justify-center text-2xl font-bold', colorClasses[study.color as keyof typeof colorClasses])}>
-                    {study.logo}
-                  </div>
-                  <span className="text-sm font-medium text-gray-400">{study.tagline}</span>
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-2">{study.title}</h3>
-                <p className="text-gray-400 mb-4">{study.description}</p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {study.services.map((service) => (
-                    <span key={service} className="px-2 py-0.5 text-xs font-medium glass text-gray-300 rounded">
-                      {service}
+              <StaggerItem key={study.title} as="article" className="h-full">
+                <div className="card card-hover group flex h-full flex-col p-7">
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 text-[0.8125rem] font-semibold tracking-[0.02em] text-white shadow-[0_10px_22px_-12px_rgba(37,99,235,0.9)] transition-transform duration-500 group-hover:scale-110">
+                      {study.logo}
                     </span>
-                  ))}
+                    <span className="rounded-full bg-[#f4f7fc] px-2.5 py-1 text-[0.75rem] text-[#7a8399]">
+                      {study.tagline}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-6 text-[1.125rem] font-semibold tracking-[-0.02em] text-[#0b1220]">
+                    {study.title}
+                  </h3>
+                  <p className="mt-3 text-body text-[#5b6478]">
+                    {study.description}
+                  </p>
+
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {study.services.map((service) => (
+                      <span
+                        key={service}
+                        className="rounded-full border border-blue-100 bg-blue-50 px-2.5 py-0.5 text-[0.6875rem] font-medium tracking-[0.04em] text-blue-700"
+                      >
+                        {service}
+                      </span>
+                    ))}
+                  </div>
+
+                  <dl className="mt-7 grid grid-cols-3 gap-4 rounded-xl bg-[#f8fafd] p-4">
+                    {study.results.map((result) => (
+                      <div key={result.label}>
+                        <dt className="sr-only">{result.label}</dt>
+                        <dd>
+                          <span className="display block text-[1.375rem] text-blue-700">{result.metric}</span>
+                          <span className="mt-1.5 block text-[0.6875rem] leading-tight text-[#7a8399]">
+                            {result.label}
+                          </span>
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+
+                  <a
+                    href="/contact"
+                    className="mt-auto inline-flex items-center gap-1.5 pt-7 text-[0.875rem] font-medium text-blue-600 transition-colors duration-300 hover:text-blue-800"
+                  >
+                    Discuss a project like this
+                    <svg className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </a>
                 </div>
-                <div className="grid grid-cols-3 gap-4 mb-6">
-                  {study.results.map((result) => (
-                    <div key={result.label} className="text-center p-4 glass-subtle rounded-xl">
-                      <div className="text-2xl font-bold text-white">{result.metric}</div>
-                      <div className="text-xs text-gray-500">{result.label}</div>
-                    </div>
-                  ))}
-                </div>
-                <a href="/contact" className="inline-flex items-center text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors">
-                  View Details
-                  <svg className="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </a>
-              </article>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
       <CTA
-        title="Want to Be Our Next Case Study?"
-        description="We're looking for ambitious partners. Let's discuss your goals and see if we're a fit."
+        title="Want to be our next case study?"
+        description="We are looking for ambitious partners. Let us discuss your goals and see if we are a fit."
       />
     </>
   );

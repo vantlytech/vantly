@@ -2,8 +2,9 @@ import { Metadata } from 'next';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import Link from 'next/link';
 import { PageHeader } from '@/components/sections';
-import { cn } from '@/lib/utils';
+import { Stagger, StaggerItem } from '@/components/motion';
 
 const BLOG_DIR = path.join(process.cwd(), 'src/content/blog');
 
@@ -42,47 +43,62 @@ export default function BlogPage() {
   return (
     <>
       <PageHeader
-        title="Insights & Strategy"
+        eyebrow="Journal"
+        title="Insights & strategy"
         description="Deep dives into GEO, SEO, web performance, and digital growth."
       />
 
-      <section className="py-20 lg:py-32 bg-black" aria-labelledby="posts-heading">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            {posts.map((post) => (
-              <article
-                key={post.slug}
-                className={cn('glass rounded-2xl overflow-hidden hover:shadow-2xl hover:border-white/20 hover:-translate-y-1 transition-all duration-300')}
-              >
-                <div className="p-6">
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-3 py-1 text-xs font-medium glass text-blue-400 rounded-full border border-blue-500/30"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <h2 className="text-xl font-semibold text-white mb-2 line-clamp-2">
-                    <a href={`/blog/${post.slug}`} className="hover:text-blue-400 transition-colors">
-                      {post.title}
-                    </a>
-                  </h2>
-                  <p className="text-gray-400 text-sm mb-4 line-clamp-3">{post.description}</p>
-                  <div className="flex items-center justify-between text-sm text-gray-500">
-                    <span>{post.author}</span>
-                    <time dateTime={post.date}>{new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
+      <section className="section-tight" aria-labelledby="posts-heading">
+        <div className="shell">
+          <h2 id="posts-heading" className="sr-only">
+            All posts
+          </h2>
 
-          {posts.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-gray-500">No posts yet. Check back soon!</p>
+          {posts.length > 0 ? (
+            <Stagger className="grid grid-cols-1 gap-6 lg:grid-cols-3" step={0.09}>
+              {posts.map((post) => (
+                <StaggerItem key={post.slug} as="article" className="h-full">
+                  <Link href={`/blog/${post.slug}`} className="card card-hover group flex h-full flex-col p-7">
+                    <div className="flex flex-wrap gap-2">
+                      {post.tags?.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border border-blue-100 bg-blue-50 px-2.5 py-0.5 text-[0.6875rem] font-medium tracking-[0.04em] text-blue-700"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <h3 className="mt-5 text-[1.1875rem] font-semibold leading-snug tracking-[-0.02em] text-[#0b1220] transition-colors duration-300 group-hover:text-blue-700">
+                      {post.title}
+                    </h3>
+                    <p className="mt-3 text-body text-[#5b6478]">
+                      {post.description}
+                    </p>
+
+                    <div className="mt-auto flex items-center justify-between pt-7 text-[0.8125rem] text-[#98a1b3]">
+                      <time dateTime={post.date}>
+                        {new Date(post.date).toLocaleDateString('en-US', {
+                          month: 'short',
+                          day: 'numeric',
+                          year: 'numeric',
+                        })}
+                      </time>
+                      <span className="inline-flex items-center gap-1.5 font-medium text-blue-600">
+                        Read
+                        <svg className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                      </span>
+                    </div>
+                  </Link>
+                </StaggerItem>
+              ))}
+            </Stagger>
+          ) : (
+            <div className="rounded-2xl border border-[#e6eaf2] bg-white py-20 text-center">
+              <p className="text-[0.9375rem] text-[#7a8399]">No posts yet. Check back soon.</p>
             </div>
           )}
         </div>

@@ -55,16 +55,22 @@ export const metadata: Metadata = {
     images: ['/og-image.png'],
     creator: '@vantly',
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon-192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/icon-512.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: '/apple-icon.png',
+  },
   verification: {
     google: 'google-site-verification-code',
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#030712' },
-  ],
+  themeColor: '#ffffff',
+  colorScheme: 'light',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
@@ -76,14 +82,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      </head>
-      <body className="min-h-full flex flex-col bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
+    <html lang="en" className={`${inter.variable} h-full antialiased`} suppressHydrationWarning>
+      <body className="flex min-h-full flex-col bg-white text-[#0b1220]">
+        <a
+          href="#content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white"
+        >
+          Skip to content
+        </a>
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="content" className="flex-1">{children}</main>
         <Footer />
       </body>
     </html>

@@ -1,31 +1,41 @@
-'use client';
-
 import { cn } from '@/lib/utils';
+import { Reveal } from '@/components/motion';
 
 interface PageHeaderProps {
+  eyebrow?: string;
   title: string;
   description?: string;
   className?: string;
 }
 
-export function PageHeader({ title, description, className }: PageHeaderProps) {
+export function PageHeader({ eyebrow, title, description, className }: PageHeaderProps) {
   return (
     <header
-      className={cn(
-        'relative bg-gradient-mesh py-12 lg:py-16',
-        className
-      )}
+      className={cn('relative overflow-hidden pt-16 pb-8 lg:pt-24 lg:pb-12', className)}
       aria-labelledby="page-title"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="aurora" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 grid-lines" aria-hidden="true" />
+
+      <div className="shell relative">
         <div className="mx-auto max-w-3xl text-center">
-          <h1 id="page-title" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            {title}
-          </h1>
+          {eyebrow && (
+            <Reveal distance={0.5}>
+              <span className="eyebrow">{eyebrow}</span>
+            </Reveal>
+          )}
+          <Reveal delay={0.08}>
+            <h1
+              id="page-title"
+              className={cn('display text-h1 text-balance', eyebrow && 'mt-5')}
+            >
+              {title}
+            </h1>
+          </Reveal>
           {description && (
-            <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
-              {description}
-            </p>
+            <Reveal delay={0.16}>
+              <p className="text-lede mx-auto mt-5 max-w-xl text-pretty">{description}</p>
+            </Reveal>
           )}
         </div>
       </div>

@@ -1,11 +1,12 @@
-'use client';
-
 import { Button } from '@/components/ui';
 import { cn } from '@/lib/utils';
+import { SectionIntro } from './SectionIntro';
+import { Stagger, StaggerItem, Reveal } from '@/components/motion';
 
 interface PricingTier {
   name: string;
   price: string;
+  cadence?: string;
   description: string;
   features: string[];
   cta: { label: string; href: string };
@@ -16,7 +17,8 @@ const pricingTiers: PricingTier[] = [
   {
     name: 'Starter',
     price: '$2,500',
-    description: 'Perfect for small businesses starting their digital journey.',
+    cadence: '/month',
+    description: 'For small businesses laying real foundations.',
     features: [
       'Technical SEO audit',
       'Keyword research (20 keywords)',
@@ -24,12 +26,13 @@ const pricingTiers: PricingTier[] = [
       'Monthly reporting',
       'Email support',
     ],
-    cta: { label: 'Get Started', href: '/contact?plan=starter' },
+    cta: { label: 'Get started', href: '/contact?plan=starter' },
   },
   {
     name: 'Growth',
     price: '$5,000',
-    description: 'For growing companies ready to scale their organic presence.',
+    cadence: '/month',
+    description: 'For companies ready to scale organic and AI visibility.',
     features: [
       'Everything in Starter',
       'GEO optimization (AI search)',
@@ -38,87 +41,103 @@ const pricingTiers: PricingTier[] = [
       'Weekly check-ins',
       'Priority support',
     ],
-    cta: { label: 'Start Growing', href: '/contact?plan=growth' },
+    cta: { label: 'Start growing', href: '/contact?plan=growth' },
     popular: true,
   },
   {
     name: 'Enterprise',
     price: '$10,000+',
-    description: 'Custom solutions for established brands with complex needs.',
+    cadence: '/month',
+    description: 'For established brands with complex requirements.',
     features: [
       'Everything in Growth',
       'Custom development projects',
-      'Dedicated account manager',
+      'Dedicated senior lead',
       'Advanced analytics & dashboards',
       'Multi-language SEO',
-      '24/7 emergency support',
+      'Priority incident response',
       'SLA guarantees',
     ],
-    cta: { label: 'Contact Sales', href: '/contact?plan=enterprise' },
+    cta: { label: 'Contact sales', href: '/contact?plan=enterprise' },
   },
 ];
 
 interface PricingSectionProps {
   className?: string;
+  withIntro?: boolean;
 }
 
-export function PricingSection({ className }: PricingSectionProps) {
+export function PricingSection({ className, withIntro = false }: PricingSectionProps) {
   return (
-    <section className={cn('py-20 lg:py-32 bg-black', className)} aria-labelledby="pricing-heading">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 id="pricing-heading" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Simple, Transparent Pricing
-          </h2>
-          <p className="mt-4 text-lg text-gray-400">
-            Choose the plan that fits your stage. All plans include a 30-day satisfaction guarantee.
-          </p>
-        </div>
+    <section className={cn('section-tight', className)} aria-labelledby="pricing-heading">
+      <div className="shell">
+        {withIntro && (
+          <SectionIntro
+            id="pricing-heading"
+            eyebrow="Pricing"
+            title="Simple, transparent pricing"
+            description="Choose the plan that fits your stage. Every plan includes a 30-day satisfaction guarantee."
+            className="mb-14"
+          />
+        )}
 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <Stagger className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-3" step={0.1}>
           {pricingTiers.map((tier) => (
-            <div
-              key={tier.name}
-              className={cn(
-                'relative p-8 rounded-2xl border transition-all',
-                tier.popular
-                  ? 'glass-strong border-blue-500/30 shadow-2xl shadow-blue-500/10'
-                  : 'glass hover:shadow-2xl hover:border-white/20 hover:-translate-y-1'
-              )}
-            >
-              {tier.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 glass-strong text-blue-400 text-sm font-medium rounded-full border border-blue-500/30">
-                  Most Popular
-                </div>
-              )}
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold text-white">{tier.name}</h3>
-                <p className="mt-2 text-gray-400">{tier.description}</p>
-              </div>
-              <div className="mb-6">
-                <span className="text-4xl font-bold text-white">{tier.price}</span>
-                <span className="text-gray-500">/month</span>
-              </div>
-              <ul className="space-y-4 mb-8" role="list">
-                {tier.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3 text-gray-300">
-                    <svg className="h-5 w-5 flex-shrink-0 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <Button
-                variant={tier.popular ? 'glass-primary' : 'glass'}
-                className="w-full"
-                asChild
+            <StaggerItem key={tier.name} className="h-full">
+              <div
+                className={cn(
+                  'relative flex h-full flex-col rounded-2xl p-8 transition-all duration-500',
+                  tier.popular
+                    ? 'border-2 border-blue-500 bg-white shadow-[0_28px_60px_-24px_rgba(37,99,235,0.4)] lg:-mt-4 lg:mb-[-1rem]'
+                    : 'border border-[#e6eaf2] bg-white shadow-sm hover:-translate-y-1 hover:shadow-lift'
+                )}
               >
-                <a href={tier.cta.href}>{tier.cta.label}</a>
-              </Button>
-            </div>
+                {tier.popular && (
+                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-blue-600 px-3.5 py-1 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-white shadow-brand">
+                    Most popular
+                  </span>
+                )}
+
+                <h3 className="text-[1.125rem] font-semibold tracking-[-0.02em] text-[#0b1220]">
+                  {tier.name}
+                </h3>
+                <p className="mt-2 text-[0.875rem] leading-relaxed text-[#7a8399]">{tier.description}</p>
+
+                <div className="mt-7 flex items-baseline gap-1">
+                  <span className="display text-[2.5rem]">{tier.price}</span>
+                  <span className="text-sm text-[#7a8399]">{tier.cadence}</span>
+                </div>
+
+                <div className="my-7 h-px bg-[#eef1f7]" />
+
+                <ul className="flex-1 space-y-3" role="list">
+                  {tier.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2.5 text-[0.875rem] text-[#475069]">
+                      <svg className="mt-[0.3rem] h-3.5 w-3.5 shrink-0 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                      </svg>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+
+                <Button
+                  href={tier.cta.href}
+                  variant={tier.popular ? 'primary' : 'secondary'}
+                  className="mt-9 w-full"
+                >
+                  {tier.cta.label}
+                </Button>
+              </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
+
+        <Reveal delay={0.2}>
+          <p className="mt-10 text-center text-[0.875rem] text-[#7a8399]">
+            All plans are month-to-month. Annual billing saves 15%.
+          </p>
+        </Reveal>
       </div>
     </section>
   );

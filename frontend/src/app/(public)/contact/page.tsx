@@ -1,72 +1,107 @@
 import { Metadata } from 'next';
 import { ContactForm } from '@/components/forms';
+import { Reveal } from '@/components/motion';
 
 export const metadata: Metadata = {
   title: 'Contact Us',
-  description: 'Get in touch with Vantly. We\'d love to hear about your project and discuss how we can help you grow.',
+  description: 'Get in touch with Vantly. We would love to hear about your project and discuss how we can help you grow.',
 };
+
+const details = [
+  {
+    label: 'Email',
+    value: 'hello@vantly.com',
+    href: 'mailto:hello@vantly.com',
+    icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+  },
+  {
+    label: 'Phone',
+    value: '+1 (234) 567-890',
+    href: 'tel:+1234567890',
+    icon: 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z',
+  },
+  {
+    label: 'Where we are',
+    value: 'San Francisco, CA — remote-first',
+    icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z',
+  },
+];
+
+const expectations = [
+  'A reply within 24 hours — yes or no, with reasons',
+  'A free visibility audit you keep either way',
+  'No sales sequence, no drip campaign',
+];
 
 export default function ContactPage() {
   return (
-    <>
-      <section className="py-20 lg:py-32 bg-black" aria-labelledby="contact-heading">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
-            <div>
-              <h2 id="contact-heading" className="text-3xl font-bold tracking-tight text-white mb-6">
-                Get in Touch
-              </h2>
-              <p className="text-lg text-gray-400 mb-8">
-                We're selective about the projects we take on to ensure we can deliver exceptional results for every client.
-                Fill out the form and we'll let you know within 24 hours if we're a good fit.
+    <section className="relative overflow-hidden pt-16 pb-24 lg:pt-24 lg:pb-32" aria-labelledby="contact-heading">
+      <div className="aurora" aria-hidden="true" />
+      <div className="pointer-events-none absolute inset-0 grid-lines" aria-hidden="true" />
+
+      <div className="shell relative">
+        <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-5">
+            <Reveal>
+              <span className="eyebrow">Contact</span>
+              <h1 id="contact-heading" className="display text-h1 mt-5">
+                Let us talk
+              </h1>
+              <p className="text-lede mt-5 max-w-md text-pretty">
+                We are selective about the projects we take on, so we can do exceptional work on each
+                one. Send us the details and we will tell you within 24 hours whether we are a fit.
               </p>
+            </Reveal>
 
-              <div className="space-y-6">
-                <div className="flex items-start gap-4 p-4 glass rounded-xl">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-lg glass-strong bg-blue-500/20 text-blue-400 flex items-center justify-center">
-                    <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            <Reveal delay={0.12}>
+              <ul className="mt-8 space-y-3" role="list">
+                {expectations.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-[0.9375rem] text-[#475069]">
+                    <svg className="mt-[0.3rem] h-3.5 w-3.5 shrink-0 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-white">Email</h3>
-                    <p className="text-gray-400">hello@vantly.com</p>
-                  </div>
-                </div>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
 
-                <div className="flex items-start gap-4 p-4 glass rounded-xl">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-lg glass-strong bg-blue-500/20 text-blue-400 flex items-center justify-center">
-                    <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
+            <Reveal delay={0.2}>
+              <dl className="mt-10 divide-y divide-[#eef1f7] border-y border-[#eef1f7]">
+                {details.map((detail) => (
+                  <div key={detail.label} className="flex items-center gap-4 py-5">
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#e6eaf2] bg-white text-blue-600 shadow-sm">
+                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d={detail.icon} />
+                      </svg>
+                    </span>
+                    <div>
+                      <dt className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-[#98a1b3]">
+                        {detail.label}
+                      </dt>
+                      <dd className="mt-1 text-[0.9375rem] text-[#0b1220]">
+                        {detail.href ? (
+                          <a href={detail.href} className="transition-colors hover:text-blue-700">
+                            {detail.value}
+                          </a>
+                        ) : (
+                          detail.value
+                        )}
+                      </dd>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-white">Phone</h3>
-                    <p className="text-gray-400">+1 (234) 567-890</p>
-                  </div>
-                </div>
+                ))}
+              </dl>
+            </Reveal>
+          </div>
 
-                <div className="flex items-start gap-4 p-4 glass rounded-xl">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-lg glass-strong bg-blue-500/20 text-blue-400 flex items-center justify-center">
-                    <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-white">Location</h3>
-                    <p className="text-gray-400">San Francisco, CA (Remote-first)</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div>
+          <div className="lg:col-span-7">
+            <Reveal delay={0.15} direction="left">
               <ContactForm />
-            </div>
+            </Reveal>
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

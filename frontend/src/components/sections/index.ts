@@ -1,6 +1,16 @@
 export { Hero } from './Hero';
-export { PageHeader } from './PageHeader';
+export { AnswerPreview } from './AnswerPreview';
+export { DashboardPreview } from './DashboardPreview';
+export { TrustBar } from './TrustBar';
+export { EngineMarquee } from './EngineMarquee';
 export { ServicesSection } from './ServicesSection';
+export { HowItWorks } from './HowItWorks';
+export { GeoVsSeo } from './GeoVsSeo';
+export { Commitments } from './Commitments';
 export { TrustSignals } from './TrustSignals';
+export { FAQ } from './FAQ';
 export { CTA } from './CTA';
+export { PageHeader } from './PageHeader';
 export { PricingSection } from './PricingSection';
+export { SectionIntro } from './SectionIntro';
+export { ServiceDetail } from './ServiceDetail';

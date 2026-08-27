@@ -1,7 +1,5 @@
 import { Metadata } from 'next';
-import { PageHeader } from '@/components/sections';
-import { CTA } from '@/components/sections';
-import { cn } from '@/lib/utils';
+import { PageHeader, ServiceDetail, CTA } from '@/components/sections';
 
 export const metadata: Metadata = {
   title: 'Website Development',
@@ -9,23 +7,23 @@ export const metadata: Metadata = {
 };
 
 const devBenefits = [
-  'Next.js 14 + React 18 + TypeScript',
-  'Tailwind CSS for rapid, consistent styling',
+  'Next.js, React & TypeScript',
+  'Tailwind CSS design systems',
   'WCAG 2.1 AA accessibility compliance',
   'Core Web Vitals optimization (90+ scores)',
   'Headless CMS integration (Contentful, Sanity, Strapi)',
-  'E-commerce with Shopify or custom solutions',
+  'E-commerce with Shopify or custom builds',
   'SEO-ready architecture from day one',
-  'Vercel/Netlify/AWS deployment & CI/CD',
+  'Vercel, Netlify or AWS deployment & CI/CD',
 ];
 
 const devProcess = [
-  { step: '01', title: 'Discovery & Strategy', description: 'Define goals, user journeys, technical requirements, and success metrics. Create project roadmap.' },
-  { step: '02', title: 'Design & Prototyping', description: 'Wireframes, high-fidelity designs, design system creation, and interactive prototypes for stakeholder review.' },
-  { step: '03', title: 'Development Sprint', description: 'Component-driven development with Storybook, automated testing, and continuous integration.' },
-  { step: '04', title: 'Content & CMS Setup', description: 'Configure headless CMS, migrate content, set up editorial workflows, and train your team.' },
-  { step: '05', title: 'QA & Performance', description: 'Cross-browser testing, accessibility audit, load testing, and Core Web Vitals optimization.' },
-  { step: '06', title: 'Launch & Support', description: 'Zero-downtime deployment, DNS configuration, monitoring setup, and 30-day post-launch support.' },
+  { step: '01', title: 'Discovery & strategy', description: 'Define goals, user journeys, technical requirements, and success metrics. Agree the roadmap.' },
+  { step: '02', title: 'Design & prototyping', description: 'Wireframes, high-fidelity design, a real design system, and interactive prototypes to review.' },
+  { step: '03', title: 'Development sprint', description: 'Component-driven development with automated testing and continuous integration.' },
+  { step: '04', title: 'Content & CMS setup', description: 'Configure the headless CMS, migrate content, set up editorial workflows, and train your team.' },
+  { step: '05', title: 'QA & performance', description: 'Cross-browser testing, accessibility audit, load testing, and Core Web Vitals tuning.' },
+  { step: '06', title: 'Launch & support', description: 'Zero-downtime deployment, DNS, monitoring, and 30 days of post-launch support.' },
 ];
 
 const techStack = [
@@ -38,68 +36,25 @@ export default function WebDevPage() {
   return (
     <>
       <PageHeader
-        title="Custom Website Development"
-        description="Fast, accessible, conversion-focused websites. Your digital foundation, done right."
+        eyebrow="Service — Web"
+        title="Your digital foundation, done right"
+        description="Fast, accessible, conversion-focused websites — engineered to rank and built to last."
       />
 
-      <section className="py-20 lg:py-32 bg-black" aria-labelledby="benefits-heading">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 id="benefits-heading" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              What We Build With
-            </h2>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
-            {techStack.map((tech) => (
-              <span key={tech} className="px-4 py-2 glass text-purple-400 rounded-full text-sm font-medium border border-purple-500/30">
-                {tech}
-              </span>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-            {devBenefits.map((benefit, index) => (
-              <div key={benefit} className={cn('p-6 glass rounded-xl hover:shadow-xl hover:border-white/20 transition-all duration-300')}>
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-lg glass-strong bg-purple-500/20 text-purple-400 flex items-center justify-center">
-                    <span className="font-bold text-lg">{index + 1}</span>
-                  </div>
-                  <p className="text-gray-300 font-medium">{benefit}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 lg:py-32 bg-black" aria-labelledby="process-heading">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 id="process-heading" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Our Development Process
-            </h2>
-          </div>
-
-          <div className="space-y-8">
-            {devProcess.map((step) => (
-              <div key={step.step} className={cn('flex gap-6 p-6 glass rounded-xl hover:shadow-xl hover:border-white/20 transition-all duration-300')}>
-                <div className="flex-shrink-0 w-14 h-14 rounded-xl glass-strong bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl font-bold">
-                  {step.step}
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-white">{step.title}</h3>
-                  <p className="mt-2 text-gray-400">{step.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ServiceDetail
+        capabilitiesTitle="What we build"
+        capabilitiesDescription="Modern web engineering, with performance and accessibility as requirements rather than afterthoughts."
+        capabilities={devBenefits}
+        processTitle="Our development process"
+        processDescription="From first workshop to a launched site you can actually maintain."
+        process={devProcess}
+        stackTitle="What we build with"
+        stack={techStack}
+      />
 
       <CTA
-        title="Ready to Build Something Great?"
-        description="Whether you need a marketing site, web app, or e-commerce platform — let's discuss your vision."
+        title="Ready to build something fast?"
+        description="Tell us what you need and we will scope it honestly — timeline, cost, and trade-offs included."
       />
     </>
   );

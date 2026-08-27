@@ -1,6 +1,6 @@
 'use client';
 
-import { InputHTMLAttributes, forwardRef } from 'react';
+import { InputHTMLAttributes, forwardRef, useId } from 'react';
 import { cn } from '@/lib/utils';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -11,12 +11,13 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ className, label, error, helperText, id, ...props }, ref) => {
-    const inputId = id || label?.toLowerCase().replace(/\s+/g, '-');
+    const generatedId = useId();
+    const inputId = id || generatedId;
 
     return (
       <div className="w-full">
         {label && (
-          <label htmlFor={inputId} className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <label htmlFor={inputId} className="mb-2 block text-[0.8125rem] font-medium text-[#475069]">
             {label}
           </label>
         )}
@@ -24,11 +25,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={inputId}
           className={cn(
-            'flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder:text-gray-400',
-            'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent',
-            'disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-gray-100',
-            'dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-500',
-            error && 'border-red-500 focus:ring-red-500',
+            'h-11 w-full rounded-xl border border-[#e0e6f0] bg-white px-3.5 text-[0.9375rem] text-[#0b1220] transition-all duration-300',
+            'placeholder:text-[#a5adbd]',
+            'hover:border-[#c9d4e6] focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/12',
+            'disabled:cursor-not-allowed disabled:opacity-50',
+            error && 'border-red-400 focus:border-red-500 focus:ring-red-500/12',
             className
           )}
           aria-invalid={error ? 'true' : 'false'}
@@ -36,12 +37,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           {...props}
         />
         {error && (
-          <p id={`${inputId}-error`} className="mt-1 text-sm text-red-500" role="alert">
+          <p id={`${inputId}-error`} className="mt-1.5 text-[0.8125rem] text-red-600" role="alert">
             {error}
           </p>
         )}
         {helperText && !error && (
-          <p id={`${inputId}-helper`} className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+          <p id={`${inputId}-helper`} className="mt-1.5 text-[0.8125rem] text-[#7a8399]">
             {helperText}
           </p>
         )}

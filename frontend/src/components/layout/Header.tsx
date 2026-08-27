@@ -1,65 +1,146 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui';
+import { Logo } from '@/components/brand';
 
 const navigation = [
   { name: 'Services', href: '/services' },
+  { name: 'Work', href: '/case-studies' },
   { name: 'Pricing', href: '/pricing' },
   { name: 'About', href: '/about' },
   { name: 'Blog', href: '/blog' },
-  { name: 'Case Studies', href: '/case-studies' },
-  { name: 'Contact', href: '/contact' },
 ];
 
 export function Header() {
-  return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/10 glass">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8" aria-label="Main navigation">
-        <div className="flex items-center">
-          <Link href="/" className="flex items-center space-x-2" aria-label="Vantly Home">
-            <span className="text-2xl font-bold text-blue-400">Vantly</span>
-          </Link>
-        </div>
+  const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
-        <div className="hidden md:flex md:items-center md:space-x-8">
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+
+  return (
+    <header
+      className={cn(
+        'sticky top-0 z-50 w-full transition-all duration-500',
+        scrolled ? 'glass-nav border-b border-[#e9edf5] shadow-[0_1px_20px_-8px_rgba(11,18,32,0.18)]' : 'border-b border-transparent bg-transparent'
+      )}
+    >
+      <nav className="shell flex h-16 items-center justify-between lg:h-[4.5rem]" aria-label="Main">
+        <Logo priority />
+
+        <div className="hidden items-center gap-0.5 md:flex">
           {navigation.map((item) => (
             <Link
               key={item.name}
               href={item.href}
               className={cn(
-                'text-sm font-medium transition-colors relative',
-                'text-gray-300 hover:text-white dark:hover:text-blue-300',
-                'after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-blue-400 after:transition-all hover:after:w-full'
+                'relative rounded-full px-3.5 py-2 text-[0.8125rem] font-medium transition-colors duration-300',
+                isActive(item.href) ? 'text-blue-700' : 'text-[#475069] hover:text-[#0b1220]'
               )}
             >
+              {isActive(item.href) && (
+                <motion.span
+                  layoutId="nav-pill"
+                  className="absolute inset-0 -z-10 rounded-full bg-blue-50"
+                  transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                />
+              )}
               {item.name}
             </Link>
           ))}
         </div>
 
-        <div className="hidden md:flex md:items-center md:space-x-4">
-          <Link href="/contact">
-            <Button variant="glass" size="sm">Get in Touch</Button>
+        <div className="hidden items-center gap-2 md:flex">
+          <Link
+            href="/contact"
+            className="rounded-full px-3.5 py-2 text-[0.8125rem] font-medium text-[#475069] transition-colors duration-300 hover:text-[#0b1220]"
+          >
+            Contact
           </Link>
-          <Link href="/contact">
-            <Button variant="glass-primary" size="sm">Start a Project</Button>
-          </Link>
+          <Button href="/contact" variant="primary" size="sm">
+            Get a free audit
+          </Button>
         </div>
 
-        <div className="md:hidden">
-          <button
-            type="button"
-            className="inline-flex items-center justify-center p-2 glass rounded-lg text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
-            aria-label="Open menu"
-          >
-            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          className="-mr-2 inline-flex h-10 w-10 items-center justify-center rounded-full text-[#475069] transition-colors hover:bg-[#f2f5fa] hover:text-[#0b1220] md:hidden"
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+        >
+          <span className="relative block h-3 w-5">
+            <span
+              className={cn(
+                'absolute left-0 block h-[1.5px] w-5 rounded-full bg-current transition-all duration-300',
+                open ? 'top-1.5 rotate-45' : 'top-0'
+              )}
+            />
+            <span
+              className={cn(
+                'absolute left-0 block h-[1.5px] w-5 rounded-full bg-current transition-all duration-300',
+                open ? 'top-1.5 -rotate-45' : 'top-3'
+              )}
+            />
+          </span>
+        </button>
       </nav>
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            id="mobile-menu"
+            key="mobile-menu"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="overflow-hidden border-t border-[#e9edf5] bg-white/95 backdrop-blur-xl md:hidden"
+          >
+            <div className="shell flex flex-col py-4">
+              {[...navigation, { name: 'Contact', href: '/contact' }].map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={cn(
+                    'border-b border-[#f0f3f8] py-3.5 text-[0.9375rem] transition-colors last:border-0',
+                    isActive(item.href) ? 'font-medium text-blue-700' : 'text-[#475069] hover:text-[#0b1220]'
+                  )}
+                >
+                  {item.name}
+                </Link>
+              ))}
+              <Button href="/contact" variant="primary" size="md" className="mt-5 w-full">
+                Get a free audit
+              </Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

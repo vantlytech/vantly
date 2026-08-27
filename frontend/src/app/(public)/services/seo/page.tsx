@@ -1,7 +1,5 @@
 import { Metadata } from 'next';
-import { PageHeader } from '@/components/sections';
-import { CTA } from '@/components/sections';
-import { cn } from '@/lib/utils';
+import { PageHeader, ServiceDetail, CTA } from '@/components/sections';
 
 export const metadata: Metadata = {
   title: 'SEO (Search Engine Optimization)',
@@ -13,79 +11,42 @@ const seoBenefits = [
   'Keyword research & topical mapping',
   'Content strategy & optimization',
   'Authority link building (white-hat)',
-  'Local SEO & GBP optimization',
+  'Local SEO & Google Business Profile',
   'International & multi-language SEO',
   'Core Web Vitals optimization',
   'Monthly reporting & analytics',
 ];
 
 const seoProcess = [
-  { step: '01', title: 'Discovery & Audit', description: 'Comprehensive technical, content, and backlink audit. Identify quick wins and strategic opportunities.' },
-  { step: '02', title: 'Keyword Strategy', description: 'Map search intent, cluster topics, and prioritize keywords by business value and difficulty.' },
-  { step: '03', title: 'Technical Foundation', description: 'Fix crawl errors, optimize site architecture, improve speed, and implement schema markup.' },
-  { step: '04', title: 'Content Optimization', description: 'Optimize existing pages, create new pillar content, and build topical authority clusters.' },
-  { step: '05', title: 'Authority Building', description: 'Earn high-quality backlinks through digital PR, partnerships, and linkable assets.' },
-  { step: '06', title: 'Measure & Scale', description: 'Track rankings, traffic, and conversions. Double down on what works, pivot what doesn\'t.' },
+  { step: '01', title: 'Discovery & audit', description: 'Comprehensive technical, content, and backlink audit. Identify quick wins and strategic opportunities.' },
+  { step: '02', title: 'Keyword strategy', description: 'Map search intent, cluster topics, and prioritize keywords by business value and difficulty.' },
+  { step: '03', title: 'Technical foundation', description: 'Fix crawl errors, optimize site architecture, improve speed, and implement schema markup.' },
+  { step: '04', title: 'Content optimization', description: 'Optimize existing pages, create new pillar content, and build topical authority clusters.' },
+  { step: '05', title: 'Authority building', description: 'Earn high-quality backlinks through digital PR, partnerships, and genuinely linkable assets.' },
+  { step: '06', title: 'Measure & scale', description: 'Track rankings, traffic, and conversions. Double down on what works, pivot on what does not.' },
 ];
 
 export default function SEOPage() {
   return (
     <>
       <PageHeader
-        title="Search Engine Optimization (SEO)"
-        description="Sustainable organic growth. Technical excellence, strategic content, earned authority."
+        eyebrow="Service — SEO"
+        title="Growth that compounds"
+        description="Technical excellence, strategic content, and earned authority — the slow-burning kind that keeps paying."
       />
 
-      <section className="py-20 lg:py-32 bg-black" aria-labelledby="benefits-heading">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 id="benefits-heading" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              What Our SEO Covers
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-            {seoBenefits.map((benefit, index) => (
-              <div key={benefit} className={cn('p-6 glass rounded-xl hover:shadow-xl hover:border-white/20 transition-all duration-300')}>
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-lg glass-strong bg-green-500/20 text-green-400 flex items-center justify-center">
-                    <span className="font-bold text-lg">{index + 1}</span>
-                  </div>
-                  <p className="text-gray-300 font-medium">{benefit}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 lg:py-32 bg-black" aria-labelledby="process-heading">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 id="process-heading" className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              Our SEO Process
-            </h2>
-          </div>
-
-          <div className="space-y-8">
-            {seoProcess.map((step) => (
-              <div key={step.step} className={cn('flex gap-6 p-6 glass rounded-xl hover:shadow-xl hover:border-white/20 transition-all duration-300')}>
-                <div className="flex-shrink-0 w-14 h-14 rounded-xl glass-strong bg-green-500/20 text-green-400 flex items-center justify-center text-xl font-bold">
-                  {step.step}
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-white">{step.title}</h3>
-                  <p className="mt-2 text-gray-400">{step.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ServiceDetail
+        capabilitiesTitle="What our SEO covers"
+        capabilitiesDescription="One engagement, the full surface area of organic search."
+        capabilities={seoBenefits}
+        processTitle="Our SEO process"
+        processDescription="A sequence built to fix the foundations first, then scale what works."
+        process={seoProcess}
+      />
 
       <CTA
-        title="Ready to Grow Your Organic Traffic?"
-        description="SEO is a long-term investment. The best time to start was yesterday. The second best time is now."
+        title="Ready to own your search results?"
+        description="Let us map the fastest path from where you rank today to where you should."
       />
     </>
   );
