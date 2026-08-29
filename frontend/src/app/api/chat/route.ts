@@ -1,31 +1,9 @@
-import os
-import logging
-from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from groq import Groq
+import { NextRequest, NextResponse } from 'next/server';
+import Groq from 'groq-sdk';
 
-load_dotenv()
+export const runtime = 'nodejs';
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
-app = FastAPI(title="Vantly Chatbot API", version="1.0.0")
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
-        "https://www.vantly.tech",
-        "https://vantly.tech",
-        "http://localhost:3000",
-    ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-SITE_CONTEXT = """
+const SITE_CONTEXT = `
 Vantly — Agency Information
 
 COMPANY:
@@ -89,9 +67,9 @@ FAQ:
 - Do you work with existing sites? Usually yes. We only recommend a rebuild when the current platform is the bottleneck.
 - Why trust a new agency? Direct hands-on attention from the core team on every project. Starter Audit is a low-risk way to see our work firsthand.
 - What's included in the Starter Audit? Full technical SEO audit, GEO/AI-citation readiness check, competitor gap analysis, 30-minute call — all for $199 one-time.
-"""
+`;
 
-SYSTEM_PROMPT = f"""You are Vantly's website assistant. Answer questions about Vantly's services, pricing, and process using ONLY the information provided in the SITE_CONTEXT below.
+const SYSTEM_PROMPT = `You are Vantly's website assistant. Answer questions about Vantly's services, pricing, and process using ONLY the information provided in the SITE_CONTEXT below.
 
 Rules:
 - Keep responses short: 2-4 sentences max.
@@ -107,55 +85,57 @@ Booking link: https://calendly.com/vantlytech/30min
 Contact email: vantlytech@gmail.com
 
 SITE_CONTEXT:
-{SITE_CONTEXT}
-"""
+${SITE_CONTEXT}
+`;
 
+export async function POST(request: NextRequest) {
+  let body: { message?: string };
 
-class ChatRequest(BaseModel):
-    message: str
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ detail: 'Invalid JSON body' }, { status: 400 });
+  }
 
+  const message = body?.message?.trim();
+  if (!message) {
+    return NextResponse.json({ detail: 'Message cannot be empty' }, { status: 400 });
+  }
 
-class ChatResponse(BaseModel):
-    reply: str
+  const apiKey = process.env.GROQ_API_KEY;
+  if (!apiKey) {
+    return NextResponse.json(
+      { detail: 'GROQ_API_KEY environment variable not set' },
+      { status: 500 }
+    );
+  }
 
+  try {
+    const client = new Groq({ apiKey });
+    const completion = await client.chat.completions.create({
+      model: 'openai/gpt-oss-20b',
+      messages: [
+        { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'user', content: message },
+      ],
+      temperature: 0.3,
+      max_tokens: 300,
+    });
 
-def get_groq_client() -> Groq:
-    api_key = os.environ.get("GROQ_API_KEY")
-    if not api_key:
-        raise HTTPException(status_code=500, detail="GROQ_API_KEY environment variable not set")
-    return Groq(api_key=api_key)
+    const reply = completion.choices[0]?.message?.content?.trim() || '';
+    if (!reply) {
+      return NextResponse.json(
+        { detail: 'Failed to generate response. Please try again later.' },
+        { status: 502 }
+      );
+    }
 
-
-@app.get("/health")
-async def health():
-    return {"status": "ok"}
-
-
-@app.post("/chat", response_model=ChatResponse)
-async def chat(request: ChatRequest):
-    if not request.message or not request.message.strip():
-        raise HTTPException(status_code=400, detail="Message cannot be empty")
-
-    try:
-        client = get_groq_client()
-        completion = client.chat.completions.create(
-            model="openai/gpt-oss-20b",
-            messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": request.message.strip()},
-            ],
-            temperature=0.3,
-            max_tokens=300,
-        )
-        reply = completion.choices[0].message.content.strip()
-        return ChatResponse(reply=reply)
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"Groq API error: {e}")
-        raise HTTPException(status_code=502, detail="Failed to generate response. Please try again later.")
-
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8001)
+    return NextResponse.json({ reply });
+  } catch (error) {
+    console.error('Groq API error:', error);
+    return NextResponse.json(
+      { detail: 'Failed to generate response. Please try again later.' },
+      { status: 502 }
+    );
+  }
+}

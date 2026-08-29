@@ -8,7 +8,7 @@ interface Message {
   content: string;
 }
 
-const CHATBOT_API = process.env.NEXT_PUBLIC_CHATBOT_API || 'http://localhost:8001';
+const CHATBOT_API = '/api/chat';
 
 const isAssistant = (msg: Message) => msg.role === 'assistant';
 
@@ -54,7 +54,7 @@ export function ChatWidget() {
     setLoading(true);
 
     try {
-      const res = await fetch(`${CHATBOT_API}/chat`, {
+      const res = await fetch(CHATBOT_API, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: text }),

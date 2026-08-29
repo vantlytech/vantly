@@ -44,17 +44,13 @@ next-env.d.ts
 # OS
 Thumbs.db
 
-# Backend
-backend/__pycache__
-backend/*.pyc
-backend/.pytest_cache
-backend/.coverage
-backend/htmlcov
-backend/vantly.db
-backend/vantly.db-journal
-backend/.venv
-backend/venv
-backend/alembic/versions/*.pyc
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache
+.coverage
+.venv
+venv
 
 # Docker
 docker-compose.override.yml
