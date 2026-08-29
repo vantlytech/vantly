@@ -155,7 +155,17 @@ export function Hero({
               ))}
             </div>
 
-            <div className="animate-rise delay-400 mt-7 flex flex-col gap-2.5 sm:mt-9 sm:flex-row sm:gap-3">
+            <a
+              href="#report-snapshot"
+              className="animate-rise delay-300 group mt-7 inline-flex max-w-full items-center gap-2 rounded-full border border-[#b7e0c8] bg-emerald-50/80 px-3.5 py-1.5 text-[0.75rem] font-medium leading-snug text-emerald-700 transition-transform duration-300 hover:-translate-y-0.5 hover:bg-emerald-100/80 sm:px-4 sm:py-2 sm:text-[0.8125rem]"
+            >
+              <svg className="h-4 w-4 shrink-0 text-emerald-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2c.8 4.5 1.5 6.2 6 7-4.5.8-5.2 2.5-6 7-.8-4.5-1.5-6.2-6-7 4.5-.8 5.2-2.5 6-7z" />
+              </svg>
+              Free SEO &amp; GEO Snapshot — see where you stand, no cost, no obligation
+            </a>
+
+            <div className="animate-rise delay-400 mt-5 flex flex-col gap-2.5 sm:mt-6 sm:flex-row sm:gap-3">
               <Button href={primaryCTA.href} variant="primary" size="lg" className="w-full sm:w-auto">
                 {primaryCTA.label}
                 <svg className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

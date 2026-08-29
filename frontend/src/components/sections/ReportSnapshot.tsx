@@ -10,7 +10,7 @@ const assurances = [
 
 export function ReportSnapshot() {
   return (
-    <section className="section-tight" aria-labelledby="report-snapshot-heading">
+    <section id="report-snapshot" className="section-tight scroll-mt-24" aria-labelledby="report-snapshot-heading">
       <div className="shell">
         <Reveal>
           <div className="relative isolate overflow-hidden rounded-3xl bg-blue-700 px-6 py-12 shadow-[0_30px_70px_-24px_rgba(29,78,216,0.5)] lg:px-12 lg:py-14">
