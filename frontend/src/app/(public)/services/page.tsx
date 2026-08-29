@@ -13,6 +13,7 @@ export default function ServicesPage() {
         eyebrow="Services"
         title="Built to be found"
         description="Three specialized disciplines, designed to work together for maximum impact."
+        background="dune"
       />
       <ServicesSection />
       <HowItWorks />

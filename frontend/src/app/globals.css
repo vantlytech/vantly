@@ -222,6 +222,37 @@ body {
     -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, #000 20%, transparent 70%);
   }
 
+  /* ---------- Dune silk texture (reusable, CSS-only + optional SVG grain)
+     White → very light gray flowing "sand dune / silk fold" shading.
+     Layer 1 (.dune-bands): broad soft light/shadow bands from radial gradients.
+     Layer 2 (inline SVG feTurbulence): faint fabric grain, added by the
+     <WaveBackground /> component so it never tiles at any resolution.
+     Both are monochrome and low-contrast so text stays readable. ---------- */
+
+  .dune-bands {
+    background-color: #f4f6fa;
+    background-image:
+      radial-gradient(ellipse 120% 60% at 15% -12%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 55%),
+      radial-gradient(ellipse 95% 55% at 82% 10%, rgba(200, 210, 226, 0.75) 0%, rgba(200, 210, 226, 0) 60%),
+      radial-gradient(ellipse 125% 65% at 45% 108%, rgba(222, 229, 240, 0.85) 0%, rgba(222, 229, 240, 0) 55%),
+      radial-gradient(ellipse 80% 40% at 55% 30%, rgba(209, 218, 231, 0.6) 0%, rgba(209, 218, 231, 0) 60%),
+      radial-gradient(ellipse 60% 50% at 8% 58%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 62%),
+      radial-gradient(ellipse 70% 55% at 94% 78%, rgba(191, 201, 219, 0.6) 0%, rgba(191, 201, 219, 0) 58%);
+  }
+
+  /* Overscanned mount so the bands finish their falloff past the section edge,
+     avoiding any hard seam at the border. */
+  .dune-bands-cover {
+    position: absolute;
+    inset: -25%;
+  }
+
+  /* Soft fade at the top/bottom so the texture melts into neighbouring bands. */
+  .dune-fade {
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  }
+
   /* ---------- Typography ---------- */
 
   .display {

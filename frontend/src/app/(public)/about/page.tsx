@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Hero, CTA, SectionIntro, Commitments } from '@/components/sections';
+import { WaveBackground } from '@/components/background';
 import { Stagger, StaggerItem } from '@/components/motion';
 
 export const metadata: Metadata = {
@@ -55,8 +56,9 @@ export default function AboutPage() {
         microcopy={[]}
       />
 
-      <section className="section bg-soft border-y border-[#eef1f7]" aria-labelledby="mission-heading">
-        <div className="shell">
+      <section className="section relative overflow-hidden border-y border-[#eef1f7]" aria-labelledby="mission-heading">
+        <WaveBackground />
+        <div className="shell relative">
           <SectionIntro
             id="mission-heading"
             eyebrow="Our mission"

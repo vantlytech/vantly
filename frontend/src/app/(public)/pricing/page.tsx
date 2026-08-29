@@ -26,7 +26,7 @@ export default function PricingPage() {
         description="No hidden fees. No long-term contracts. Clear pricing for measurable results."
       />
 
-      <PricingSection />
+      <PricingSection highlightPopular />
 
       <FAQ
         items={faqs}

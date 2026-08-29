@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui';
 import { cn } from '@/lib/utils';
 import { SectionIntro } from './SectionIntro';
+import { WaveBackground } from '@/components/background';
 import { Stagger, StaggerItem, Reveal } from '@/components/motion';
 
 interface PricingTier {
@@ -62,9 +63,11 @@ const pricingTiers: PricingTier[] = [
 interface PricingSectionProps {
   className?: string;
   withIntro?: boolean;
+  /** Give the "most popular" card a soft dune-silk texture background. */
+  highlightPopular?: boolean;
 }
 
-export function PricingSection({ className, withIntro = false }: PricingSectionProps) {
+export function PricingSection({ className, withIntro = false, highlightPopular = false }: PricingSectionProps) {
   return (
     <section className={cn('section-tight', className)} aria-labelledby="pricing-heading">
       <div className="shell">
@@ -86,9 +89,13 @@ export function PricingSection({ className, withIntro = false }: PricingSectionP
                   'relative flex h-full flex-col rounded-2xl p-8 transition-all duration-500',
                   tier.popular
                     ? 'border-2 border-blue-500 bg-white shadow-[0_28px_60px_-24px_rgba(37,99,235,0.4)] lg:-mt-4 lg:mb-[-1rem]'
-                    : 'border border-[#e6eaf2] bg-white shadow-sm hover:-translate-y-1 hover:shadow-lift'
+                    : 'border border-[#e6eaf2] bg-white shadow-sm hover:-translate-y-1 hover:shadow-lift',
+                  tier.popular && highlightPopular && 'isolate'
                 )}
               >
+                {tier.popular && highlightPopular && (
+                  <WaveBackground className="-z-10 overflow-hidden rounded-2xl" grain={0.55} />
+                )}
                 {tier.popular && (
                   <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-blue-600 px-3.5 py-1 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-white shadow-brand">
                     Most popular

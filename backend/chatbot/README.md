@@ -71,7 +71,7 @@ curl http://localhost:8001/health
 
 ## How It Works
 
-- The chatbot uses Groq's `llama-3.3-70b-versatile` model for fast, factual responses.
+- The chatbot uses Groq's `openai/gpt-oss-20b` model for fast, factual responses.
 - All Vantly information (services, pricing, FAQ) is embedded in the system prompt.
 - The chatbot only answers using the provided context — it won't invent information.
 - If asked something outside Vantly's scope, it redirects to booking a call.
