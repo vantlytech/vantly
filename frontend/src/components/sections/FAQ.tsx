@@ -29,7 +29,7 @@ const defaultFaqs: FaqItem[] = [
   },
   {
     q: 'What does it cost?',
-    a: 'Our pricing starts at $199 for a one-time Starter Audit, with ongoing Growth Packages from $799/month. Full Partnership pricing is custom based on scope. See our Pricing page for full details.',
+    a: 'We start with a free SEO & GEO snapshot, then a $199 one-time Starter Audit, or an ongoing Growth & Partnership plan starting at $799/month. See our Pricing page for full details.',
   },
   {
     q: 'What happens in the free audit?',

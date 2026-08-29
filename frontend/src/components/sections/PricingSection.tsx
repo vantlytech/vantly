@@ -1,7 +1,9 @@
 import { Button } from '@/components/ui';
+import { pricingCta } from '@/components/ui/pricingCTA';
 import { cn } from '@/lib/utils';
 import { SectionIntro } from './SectionIntro';
 import { WaveBackground } from '@/components/background';
+import { ReportForm } from '@/components/report';
 import { Stagger, StaggerItem, Reveal } from '@/components/motion';
 
 interface PricingTier {
@@ -10,12 +12,26 @@ interface PricingTier {
   cadence?: string;
   description: string;
   features: string[];
-  cta: { label: string; href: string; target?: string; rel?: string };
+  cta?: { label: string; href: string; target?: string; rel?: string };
+  /** Renders the free-report lead form instead of a link button. */
+  reportForm?: boolean;
   popular?: boolean;
   badge?: string;
 }
 
 const pricingTiers: PricingTier[] = [
+  {
+    name: 'Free SEO & GEO Snapshot',
+    price: 'Free',
+    description: 'Get a free SEO & GEO report for your website, sent straight to your inbox.',
+    features: [
+      'Technical SEO check',
+      'AI/GEO readiness overview',
+      'Delivered within 24-48 hours',
+      'No obligation',
+    ],
+    reportForm: true,
+  },
   {
     name: 'Starter Audit',
     price: '$199',
@@ -30,33 +46,22 @@ const pricingTiers: PricingTier[] = [
     badge: 'Best for: Testing us out, low commitment',
   },
   {
-    name: 'Growth Package',
-    price: '$799',
+    name: 'Growth & Partnership',
+    price: 'Starting at $799',
     cadence: '/month',
-    description: 'Ongoing SEO and GEO optimization to grow your organic and AI-search visibility month over month.',
+    description: 'Ongoing SEO, GEO, and web development support — scoped to what actually moves the needle for your business.',
     features: [
-      'Everything in Starter Audit',
       'Monthly content optimization',
       'Structured data / schema implementation',
       'Monthly performance reporting',
       'Direct Slack / email access',
-    ],
-    cta: { label: 'Book a Slot', href: 'https://calendly.com/vantlytech/30min', target: '_blank', rel: 'noopener noreferrer' },
-    popular: true,
-    badge: 'Best for: Businesses ready to grow consistently',
-  },
-  {
-    name: 'Full Partnership',
-    price: 'Custom',
-    description: 'The complete package — SEO, GEO, and ongoing web development support, treated as an extension of your team.',
-    features: [
-      'Everything in Growth Package',
       'Custom web development & maintenance',
       'Priority support & faster turnaround',
       'Quarterly strategy sessions',
     ],
     cta: { label: 'Book a Slot', href: 'https://calendly.com/vantlytech/30min', target: '_blank', rel: 'noopener noreferrer' },
-    badge: 'Best for: Businesses wanting a full digital partner',
+    popular: true,
+    badge: 'Best for: Businesses wanting a full digital growth partner',
   },
 ];
 
@@ -88,7 +93,7 @@ export function PricingSection({ className, withIntro = false, highlightPopular 
                 className={cn(
                   'relative flex h-full flex-col rounded-2xl p-8 transition-all duration-500',
                   tier.popular
-                    ? 'border-2 border-blue-500 bg-white shadow-[0_28px_60px_-24px_rgba(37,99,235,0.4)] lg:-mt-4 lg:mb-[-1rem]'
+                    ? 'border-2 border-blue-500 bg-white shadow-[0_28px_60px_-24px_rgba(37,99,235,0.4)]'
                     : 'border border-[#e6eaf2] bg-white shadow-sm hover:-translate-y-1 hover:shadow-lift',
                   tier.popular && highlightPopular && 'isolate'
                 )}
@@ -109,7 +114,7 @@ export function PricingSection({ className, withIntro = false, highlightPopular 
 
                 <div className="mt-7 flex items-baseline gap-1">
                   <span className="display text-[2.5rem]">{tier.price}</span>
-                  <span className="text-sm text-[#7a8399]">{tier.cadence}</span>
+                  <span className="text-xl font-medium text-[#475069]">{tier.cadence}</span>
                 </div>
 
                 <div className="my-7 h-px bg-[#eef1f7]" />
@@ -125,21 +130,28 @@ export function PricingSection({ className, withIntro = false, highlightPopular 
                   ))}
                 </ul>
 
-                <Button
-                  href={tier.cta.href}
-                  target={tier.cta.target}
-                  rel={tier.cta.rel}
-                  variant={tier.popular ? 'primary' : 'secondary'}
-                  className="mt-9 w-full"
-                >
-                  {tier.cta.label}
-                </Button>
-
                 {tier.badge && (
                   <p className="mt-4 text-center text-[0.8125rem] text-[#7a8399]">
                     {tier.badge}
                   </p>
                 )}
+
+                <div className="mt-9">
+                  {tier.reportForm ? (
+                    <ReportForm variant="modal" />
+                  ) : (
+                    <Button
+                      href={tier.cta?.href}
+                      target={tier.cta?.target}
+                      rel={tier.cta?.rel}
+                      variant={pricingCta.variant}
+                      size={pricingCta.size}
+                      className="w-full"
+                    >
+                      {tier.cta?.label}
+                    </Button>
+                  )}
+                </div>
               </div>
             </StaggerItem>
           ))}

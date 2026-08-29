@@ -12,7 +12,7 @@ const faqs = [
   { q: 'What is the contract length?', a: 'Month-to-month. Cancel anytime with 30 days notice. Annual plans are available at a 15% discount.' },
   { q: 'Do you offer refunds?', a: 'Yes — if our Starter Audit doesn\'t surface at least 5 actionable improvements for your business, we\'ll refund you in full.' },
   { q: 'What payment methods do you accept?', a: 'Credit card, ACH or bank transfer, and wire for annual enterprise contracts.' },
-  { q: 'What if my needs do not fit a plan?', a: 'Tell us the scope and we will quote it. Most custom engagements start from the Growth Package tier and adjust from there.' },
+  { q: 'What if my needs do not fit a plan?', a: 'Tell us the scope and we will quote it. Most custom engagements start from the Growth & Partnership tier and adjust from there.' },
   { q: 'What\'s included in the Starter Audit?', a: 'A full technical SEO audit, a GEO/AI-citation readiness check, competitor gap analysis, and a 30-minute call to walk through the findings together — all for a one-time $199.' },
   { q: 'Why should I trust a new agency?', a: 'We\'re a new agency, and we\'re upfront about that. That means you get direct, hands-on attention from our core team on every project — not junior staff buried under dozens of accounts. Our Starter Audit is a low-risk way to see our work firsthand before committing to anything larger.' },
 ];

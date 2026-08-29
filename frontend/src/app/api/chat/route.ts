@@ -35,17 +35,17 @@ SERVICES:
 
 PRICING:
 
+- Free SEO & GEO Snapshot: Free
+  Includes: Technical SEO check, AI/GEO readiness overview, delivered within 24-48 hours
+  Request it via the "Get Free Report" form on the site. No obligation.
+
 - Starter Audit: $199 one-time
   Includes: Full technical SEO audit, GEO/AI-citation readiness check, competitor gap analysis, 30-minute strategy call
   Best for: Testing us out, low commitment
 
-- Growth Package: $799/month (Most Popular)
-  Includes: Everything in Starter Audit + monthly content optimization, structured data/schema implementation, monthly performance reporting, direct Slack/email access
-  Best for: Businesses ready to grow consistently
-
-- Full Partnership: Custom pricing
-  Includes: Everything in Growth Package + custom web development & maintenance, priority support & faster turnaround, quarterly strategy sessions
-  Best for: Businesses wanting a full digital partner
+- Growth & Partnership: Starting at $799/month
+  Includes: Monthly content optimization, structured data/schema implementation, monthly performance reporting, direct Slack/email access, custom web development & maintenance, priority support & faster turnaround, quarterly strategy sessions
+  Best for: Businesses wanting a full digital growth partner
 
 GUARANTEE:
 If our Starter Audit doesn't surface at least 5 actionable improvements for your business, we'll refund you in full.

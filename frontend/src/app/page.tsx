@@ -1,5 +1,6 @@
 import {
   Hero,
+  ReportSnapshot,
   TrustBar,
   EngineMarquee,
   ServicesSection,
@@ -15,7 +16,8 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <TrustBar className="-mt-4 lg:-mt-6" />
+      <ReportSnapshot />
+      <TrustBar />
       <EngineMarquee className="mt-16 lg:mt-20" />
       <ServicesSection />
       <HowItWorks />

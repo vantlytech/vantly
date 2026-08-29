@@ -1,4 +1,5 @@
 export { Hero } from './Hero';
+export { ReportSnapshot } from './ReportSnapshot';
 export { AnswerPreview } from './AnswerPreview';
 export { DashboardPreview } from './DashboardPreview';
 export { TrustBar } from './TrustBar';
