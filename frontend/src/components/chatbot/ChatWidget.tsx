@@ -60,8 +60,15 @@ export function ChatWidget() {
         body: JSON.stringify({ message: text }),
       });
       const data = await res.json();
-      const reply = data.reply || 'Sorry, something went wrong. Please try again.';
-      setMessages((prev) => [...prev, { role: 'assistant', content: reply }]);
+      if (!res.ok || !data.reply) {
+        console.error('Chat API error:', data);
+        setMessages((prev) => [
+          ...prev,
+          { role: 'assistant', content: data.detail || 'Sorry, something went wrong. Please try again.' },
+        ]);
+        return;
+      }
+      setMessages((prev) => [...prev, { role: 'assistant', content: data.reply }]);
     } catch {
       setMessages((prev) => [
         ...prev,
