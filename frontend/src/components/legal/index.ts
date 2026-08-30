@@ -1,0 +1,1 @@
+export { LegalLayout, LegalSection, LegalP, LegalList, LegalFlag } from './LegalPage';
