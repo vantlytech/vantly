@@ -60,7 +60,7 @@ BOOKING:
 Book a call: https://calendly.com/vantlytech/30min
 
 CONTACT:
-Email: vantlytech@gmail.com
+Email: info@vantly.tech
 
 FAQ:
 - How long until we see results? Technical fixes can shift AI citations within weeks. Organic rankings usually take 3-6 months.
@@ -82,7 +82,7 @@ Rules:
 - Do NOT use markdown formatting (no asterisks, no **bold**, no bullet points). Use plain text only.
 
 Booking link: https://calendly.com/vantlytech/30min
-Contact email: vantlytech@gmail.com
+Contact email: info@vantly.tech
 
 SITE_CONTEXT:
 ${SITE_CONTEXT}

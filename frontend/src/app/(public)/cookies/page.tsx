@@ -141,9 +141,9 @@ export default function CookiesPage() {
           If you have any questions about our use of cookies, contact us at{' '}
           <a
             className="text-blue-600 underline underline-offset-2 hover:text-blue-700"
-            href="mailto:vantlytech@gmail.com"
+            href="mailto:info@vantly.tech"
           >
-            vantlytech@gmail.com
+            info@vantly.tech
           </a>
           .
         </LegalP>

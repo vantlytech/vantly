@@ -154,9 +154,9 @@ export default function PrivacyPage() {
           To exercise any of these rights, contact us at{' '}
           <a
             className="text-blue-600 underline underline-offset-2 hover:text-blue-700"
-            href="mailto:vantlytech@gmail.com"
+            href="mailto:info@vantly.tech"
           >
-            vantlytech@gmail.com
+            info@vantly.tech
           </a>
           . We will respond within a reasonable timeframe.
         </LegalP>
@@ -188,9 +188,9 @@ export default function PrivacyPage() {
           please contact us at{' '}
           <a
             className="text-blue-600 underline underline-offset-2 hover:text-blue-700"
-            href="mailto:vantlytech@gmail.com"
+            href="mailto:info@vantly.tech"
           >
-            vantlytech@gmail.com
+            info@vantly.tech
           </a>
           .
         </LegalP>
