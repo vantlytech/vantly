@@ -1,41 +1,14 @@
-import { Metadata } from 'next';
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
 import Link from 'next/link';
 import { PageHeader } from '@/components/sections';
 import { Stagger, StaggerItem } from '@/components/motion';
+import { createPageMetadata } from '@/lib/metadata';
+import { getBlogPosts } from '@/lib/blog';
 
-const BLOG_DIR = path.join(process.cwd(), 'src/content/blog');
-
-interface BlogPost {
-  slug: string;
-  title: string;
-  description: string;
-  date: string;
-  tags: string[];
-  author: string;
-}
-
-function getBlogPosts(): BlogPost[] {
-  const files = fs.readdirSync(BLOG_DIR);
-  const posts = files
-    .filter((file) => file.endsWith('.mdx'))
-    .map((file) => {
-      const filePath = path.join(BLOG_DIR, file);
-      const content = fs.readFileSync(filePath, 'utf-8');
-      const { data } = matter(content);
-      const slug = file.replace('.mdx', '');
-      return { slug, ...data } as BlogPost;
-    })
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  return posts;
-}
-
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Blog',
   description: 'Insights on GEO, SEO, website development, and digital growth strategies from the Vantly team.',
-};
+  path: '/blog',
+});
 
 export default function BlogPage() {
   const posts = getBlogPosts();

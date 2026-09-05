@@ -1,10 +1,12 @@
-import { Metadata } from 'next';
 import { PageHeader, ServiceDetail, CTA } from '@/components/sections';
+import { createPageMetadata } from '@/lib/metadata';
+import { JsonLd, breadcrumbSchema } from '@/components/seo/JsonLd';
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'GEO (Generative Engine Optimization)',
   description: 'Optimize your content for AI-powered search engines like ChatGPT, Perplexity, and Google SGE. Get cited in AI responses and capture the future of search.',
-};
+  path: '/services/geo',
+});
 
 const geoBenefits = [
   'AI citation optimization for ChatGPT, Perplexity, Claude',
@@ -29,6 +31,12 @@ const geoProcess = [
 export default function GEOPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Services', path: '/services' },
+          { name: 'Generative Engine Optimization', path: '/services/geo' },
+        ])}
+      />
       <PageHeader
         eyebrow="Service — GEO"
         title="Be the answer AI gives"

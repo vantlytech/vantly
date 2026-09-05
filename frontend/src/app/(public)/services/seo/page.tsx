@@ -1,10 +1,12 @@
-import { Metadata } from 'next';
 import { PageHeader, ServiceDetail, CTA } from '@/components/sections';
+import { createPageMetadata } from '@/lib/metadata';
+import { JsonLd, breadcrumbSchema } from '@/components/seo/JsonLd';
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'SEO (Search Engine Optimization)',
   description: 'Drive sustainable organic traffic with technical SEO, content strategy, and authority link building. Long-term growth that compounds.',
-};
+  path: '/services/seo',
+});
 
 const seoBenefits = [
   'Technical SEO audits & fixes',
@@ -29,6 +31,12 @@ const seoProcess = [
 export default function SEOPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Services', path: '/services' },
+          { name: 'Search Engine Optimization', path: '/services/seo' },
+        ])}
+      />
       <PageHeader
         eyebrow="Service — SEO"
         title="Growth that compounds"

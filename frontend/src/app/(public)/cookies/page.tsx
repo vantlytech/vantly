@@ -1,10 +1,11 @@
-import { Metadata } from 'next';
 import { LegalLayout, LegalSection, LegalP, LegalList } from '@/components/legal';
+import { createPageMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Cookie Policy',
   description: "Vantly's Cookie Policy — what cookies the site uses and how you can control them.",
-};
+  path: '/cookies',
+});
 
 const current = 'Cookie Policy';
 const lastUpdated = 'August 30, 2026';

@@ -1,10 +1,11 @@
-import { Metadata } from 'next';
 import { LegalLayout, LegalSection, LegalP, LegalList } from '@/components/legal';
+import { createPageMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Terms of Service',
   description: "Vantly's Terms of Service — the agreement governing use of our website and services.",
-};
+  path: '/terms',
+});
 
 const current = 'Terms of Service';
 const lastUpdated = 'August 30, 2026';

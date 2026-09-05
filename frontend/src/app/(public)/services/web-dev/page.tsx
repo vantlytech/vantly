@@ -1,10 +1,12 @@
-import { Metadata } from 'next';
 import { PageHeader, ServiceDetail, CTA } from '@/components/sections';
+import { createPageMetadata } from '@/lib/metadata';
+import { JsonLd, breadcrumbSchema } from '@/components/seo/JsonLd';
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Website Development',
   description: 'Custom websites built with Next.js, React, and modern web technologies. Fast, accessible, and conversion-focused.',
-};
+  path: '/services/web-dev',
+});
 
 const devBenefits = [
   'Next.js, React & TypeScript',
@@ -35,6 +37,12 @@ const techStack = [
 export default function WebDevPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Services', path: '/services' },
+          { name: 'Website Development', path: '/services/web-dev' },
+        ])}
+      />
       <PageHeader
         eyebrow="Service — Web"
         title="Your digital foundation, done right"

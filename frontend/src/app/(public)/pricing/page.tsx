@@ -1,10 +1,12 @@
-import { Metadata } from 'next';
 import { PageHeader, PricingSection, FAQ, CTA } from '@/components/sections';
+import { createPageMetadata } from '@/lib/metadata';
+import { JsonLd, faqPageSchema } from '@/components/seo/JsonLd';
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Pricing',
   description: 'Simple, transparent pricing for GEO, SEO, and Website Development services. Choose the plan that fits your stage.',
-};
+  path: '/pricing',
+});
 
 const faqs = [
   { q: 'Can I change plans later?', a: 'Yes. Upgrade or downgrade at any time — changes take effect at the start of your next billing cycle.' },
@@ -20,6 +22,7 @@ const faqs = [
 export default function PricingPage() {
   return (
     <>
+      <JsonLd data={faqPageSchema(faqs)} />
       <PageHeader
         eyebrow="Pricing"
         title="Simple, transparent pricing"

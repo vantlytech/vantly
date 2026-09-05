@@ -1,12 +1,13 @@
-import { Metadata } from 'next';
 import { Hero, CTA, SectionIntro, Commitments } from '@/components/sections';
 import { WaveBackground } from '@/components/background';
 import { Stagger, StaggerItem } from '@/components/motion';
+import { createPageMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'About Us',
   description: 'Learn about Vantly — our mission, values, and approach to digital growth.',
-};
+  path: '/about',
+});
 
 const values = [
   { title: 'Results first', description: 'We measure success by your growth, not our hours. Every strategy ties back to a business outcome.' },

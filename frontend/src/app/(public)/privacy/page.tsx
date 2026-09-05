@@ -1,10 +1,11 @@
-import { Metadata } from 'next';
 import { LegalLayout, LegalSection, LegalP, LegalList } from '@/components/legal';
+import { createPageMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Privacy Policy',
   description: "Vantly's Privacy Policy — how we collect, use, and protect your information.",
-};
+  path: '/privacy',
+});
 
 const current = 'Privacy Policy';
 const lastUpdated = 'August 30, 2026';

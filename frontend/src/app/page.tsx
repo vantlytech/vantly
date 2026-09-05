@@ -11,10 +11,13 @@ import {
   FAQ,
   CTA,
 } from '@/components/sections';
+import { JsonLd, organizationSchema, faqPageSchema } from '@/components/seo/JsonLd';
+import { homeFaqs } from '@/lib/faqs';
 
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={[organizationSchema(), faqPageSchema(homeFaqs)]} />
       <Hero />
       <ReportSnapshot />
       <TrustBar />

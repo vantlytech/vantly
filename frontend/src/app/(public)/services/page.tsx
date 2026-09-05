@@ -1,10 +1,11 @@
-import { Metadata } from 'next';
 import { PageHeader, ServicesSection, HowItWorks, CTA } from '@/components/sections';
+import { createPageMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Our Services',
   description: 'Explore our three core services: Generative Engine Optimization (GEO), Search Engine Optimization (SEO), and Custom Website Development.',
-};
+  path: '/services',
+});
 
 export default function ServicesPage() {
   return (

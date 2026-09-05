@@ -1,11 +1,12 @@
-import { Metadata } from 'next';
 import { PageHeader, CTA } from '@/components/sections';
 import { Stagger, StaggerItem } from '@/components/motion';
+import { createPageMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Case Studies',
   description: 'See how we\'ve helped companies grow through GEO, SEO, and custom website development. Real results from real clients.',
-};
+  path: '/case-studies',
+});
 
 const caseStudies = [
   {

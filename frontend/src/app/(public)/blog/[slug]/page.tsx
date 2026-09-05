@@ -1,27 +1,9 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
-
-const BLOG_DIR = path.join(process.cwd(), 'src/content/blog');
-
-function getPost(slug: string) {
-  const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
-  if (!fs.existsSync(filePath)) return null;
-  const content = fs.readFileSync(filePath, 'utf-8');
-  const { data, content: mdxContent } = matter(content);
-  return { slug, frontmatter: data, content: mdxContent };
-}
-
-function getAllSlugs() {
-  const files = fs.readdirSync(BLOG_DIR);
-  return files
-    .filter((file) => file.endsWith('.mdx'))
-    .map((file) => file.replace('.mdx', ''));
-}
+import { getPost, getAllSlugs } from '@/lib/blog';
+import { JsonLd, articleSchema } from '@/components/seo/JsonLd';
 
 export async function generateStaticParams() {
   const slugs = getAllSlugs();
@@ -35,18 +17,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: post.frontmatter.title,
     description: post.frontmatter.description,
+    alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       title: post.frontmatter.title,
       description: post.frontmatter.description,
+      url: `/blog/${slug}`,
       type: 'article',
       publishedTime: post.frontmatter.date,
       authors: [post.frontmatter.author],
       tags: post.frontmatter.tags,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: post.frontmatter.title,
-      description: post.frontmatter.description,
     },
   };
 }
@@ -114,6 +93,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       itemScope
       itemType="https://schema.org/BlogPosting"
     >
+      <JsonLd
+        data={articleSchema({
+          title: frontmatter.title,
+          description: frontmatter.description,
+          date: frontmatter.date,
+          author: frontmatter.author,
+          slug,
+        })}
+      />
       <div className="aurora" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 grid-lines" aria-hidden="true" />
 
