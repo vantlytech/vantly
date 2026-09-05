@@ -37,7 +37,7 @@ export function AnnouncementBar() {
     <div className="w-full bg-emerald-600 text-white">
       <div className="shell relative flex items-center justify-center gap-x-4 py-2 pr-12">
         <p className="min-w-0 truncate text-[0.8125rem] font-medium sm:text-[0.875rem]">
-          Is AI recommending your brand? Get a free SEO &amp; GEO report in minutes.
+          Is AI recommending your brand? Get a free SEO &amp; GEO report.
         </p>
 
         <Link
