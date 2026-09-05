@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/layout';
 import { Footer } from '@/components/layout';
+import { AnnouncementBar } from '@/components/layout';
 import { ChatWidget } from '@/components/chatbot/ChatWidget';
 import { SITE_URL } from '@/lib/site';
 
@@ -77,6 +78,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <AnnouncementBar />
         <Header />
         <main id="content" className="flex-1">{children}</main>
         <Footer />
